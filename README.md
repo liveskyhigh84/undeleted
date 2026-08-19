@@ -1,7 +1,9 @@
 # TaskGuardian
 
-Personal backup/diff/restore safety net for Todoist. Git is the version-history engine —
-no custom diff code. Not a replacement app; runs alongside Todoist.
+Backup/diff/restore safety net for Todoist and Asana. Git is the version-history engine —
+no custom diff code. Not a replacement app; runs alongside the tool you already use.
+
+> TaskGuardian is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.
 
 ## Setup
 
@@ -10,9 +12,17 @@ cd ~/Developer/TaskGuardian
 ./.venv/bin/pip install -r requirements.txt   # already done on first build
 ```
 
-1. Get a Todoist personal API token: Todoist → Settings → Integrations → Developer.
+Interactive setup (stores your token in macOS Keychain):
+
+```
+taskguardian init
+```
+
+Or manually:
+1. Todoist personal API token: Todoist → Settings → Integrations → Developer.
+   Asana personal access token: Asana → My Settings → Apps → Manage Developer Apps.
 2. Store it (pick one):
-   - Env var: `export TODOIST_API_TOKEN="..."` (add to `~/.zshrc` to persist)
+   - Env var: `export TODOIST_API_TOKEN="..."` / `export ASANA_ACCESS_TOKEN="..."`
    - macOS Keychain: `security add-generic-password -a todoist_token -s taskguardian -w "TOKEN"`
 3. Optional monitoring (both free, no card):
    - [healthchecks.io](https://healthchecks.io) → create a check → `export HEALTHCHECKS_URL="https://hc-ping.com/your-uuid"`
@@ -21,13 +31,16 @@ cd ~/Developer/TaskGuardian
 ## Usage
 
 ```
-taskguardian snapshot                    # pull tasks, commit if changed
-taskguardian restore --commit HEAD~5     # dry-run: show what's missing vs 5 snapshots ago
-taskguardian restore --commit HEAD~5 --no-dry-run   # actually recreate missing tasks
+taskguardian snapshot --source todoist          # pull tasks, commit if changed
+taskguardian snapshot --source asana
+taskguardian restore --source todoist --commit HEAD~5     # dry-run: show what's missing
+taskguardian restore --source todoist --commit HEAD~5 --no-dry-run   # actually restore
+taskguardian status                              # tracked-task counts + snapshot history
+taskguardian status --notify                     # also push the summary via ntfy
 ```
 
-Each snapshot overwrites `snapshots/todoist.json` and commits it — `git log -- snapshots/todoist.json`
-and `git diff <ref> -- snapshots/todoist.json` give you full history and diffs for free.
+Each snapshot overwrites `snapshots/<source>.json` and commits it — `git log` and `git diff`
+on that one file give you full history for free.
 
 ## Scheduling (pick one)
 
@@ -44,21 +57,51 @@ and `git diff <ref> -- snapshots/todoist.json` give you full history and diffs f
 A snapshot that shows the task count dropping ≥15% from the previous one triggers an ntfy alert —
 that's the exact silent-deletion pattern this tool exists to catch.
 
-## Not built yet (per the plan — ship Todoist first)
+## Selling this (Path A — bring-your-own-token)
 
-- Asana snapshot/restore (module scaffold not started — same pattern as Todoist once this is proven)
-- Two-way sync — this is backup/restore only, additive on restore, never destructive
+Sold as the CLI itself (a paid GitHub repo / license key), never as a hosted service.
+Buyers run it on their own machine with their own Todoist/Asana token — you never see their
+credentials or task data. This is also the compliant model: Todoist's ToS prohibits transferring
+access granted to *your* account, so a shared-token hosted version isn't just riskier, it's
+against the terms. Each customer must generate their own token.
+
+Licensing is optional and off by default. To enable it:
+
+```
+export TASKGUARDIAN_GUMROAD_PRODUCT_ID="your_gumroad_product_id"
+```
+
+With that unset (the default for your own personal instance), every command runs unlicensed —
+no gate. Once set, `snapshot`/`restore` require a valid `TASKGUARDIAN_LICENSE_KEY`
+(env var or Keychain entry `taskguardian_license`), verified against Gumroad's free license API,
+cached for 7 days, with a 30-day offline grace period so a Gumroad outage doesn't lock out a
+paying customer mid-trip.
+
+## Testing
+
+```
+./.venv/bin/pip install -r requirements-dev.txt
+./.venv/bin/pytest -q
+./.venv/bin/ruff check taskguardian.py taskguardian/
+```
+
+15 tests cover `find_missing` diff logic, git-backed snapshot read/write/commit (against a real
+isolated temp repo, not mocked), and license verification (valid/invalid/network-failure/grace-period).
+Not covered: a live run against a real Todoist/Asana account — needs your token, see Setup.
 
 ## Files
 
 ```
 taskguardian/
-  config.py            token loading (env var → Keychain fallback)
-  todoist_snapshot.py  fetch + restore via todoist-api-python
-  storage.py           git-backed snapshot read/write
-  restore.py           diff old vs current, report/restore missing tasks
-  monitor.py           healthchecks.io ping + ntfy alert
-taskguardian.py         CLI entrypoint (snapshot / restore)
-snapshots/              git-tracked JSON snapshots (the actual backup data)
-.github/workflows/      GitHub Actions daily cron
+  config.py             token loading (env var → Keychain fallback)
+  todoist_snapshot.py   fetch + restore via todoist-api-python
+  asana_snapshot.py     fetch + restore via the official asana client
+  storage.py             git-backed snapshot read/write
+  restore.py             diff old vs current, report/restore missing tasks (multi-source)
+  monitor.py             healthchecks.io ping + ntfy alert
+  license.py             optional Gumroad license gate
+taskguardian.py           CLI entrypoint (init / snapshot / restore / status)
+snapshots/                git-tracked JSON snapshots (the actual backup data)
+tests/                    pytest suite, 15 tests
+.github/workflows/        GitHub Actions daily cron
 ```

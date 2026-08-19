@@ -7,7 +7,7 @@ SNAPSHOTS_DIR = Path(__file__).resolve().parent.parent / "snapshots"
 
 
 def _run_git(*args):
-    return subprocess.run(["git", *args], cwd=SNAPSHOTS_DIR.parent, capture_output=True, text=True)
+    return subprocess.run(["git", *args], cwd=SNAPSHOTS_DIR.parent, capture_output=True, text=True, check=False)
 
 
 def ensure_repo():
