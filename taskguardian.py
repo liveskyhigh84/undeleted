@@ -35,8 +35,8 @@ def require_license() -> bool:
     if license.is_licensed():
         return True
     print(
-        "License check failed. Set TASKGUARDIAN_LICENSE_KEY to a valid Gumroad license key,\n"
-        "or unset TASKGUARDIAN_GUMROAD_PRODUCT_ID for a personal/dev instance.",
+        "License check failed. Set TASKGUARDIAN_LICENSE_KEY to a valid Lemon Squeezy license key,\n"
+        "or unset TASKGUARDIAN_LICENSE_REQUIRED for a personal/dev instance.",
         file=sys.stderr,
     )
     return False

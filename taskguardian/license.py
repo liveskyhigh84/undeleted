@@ -11,7 +11,7 @@ RECHECK_SECONDS = 7 * 24 * 3600
 OFFLINE_GRACE_SECONDS = 30 * 24 * 3600
 
 
-def _read_cache():
+def _read_cache() -> dict | None:
     if not CACHE_PATH.exists():
         return None
     try:
@@ -20,7 +20,7 @@ def _read_cache():
         return None
 
 
-def _write_cache(valid):
+def _write_cache(valid: bool) -> None:
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(json.dumps({
         "key": config.LICENSE_KEY,
@@ -30,26 +30,23 @@ def _write_cache(valid):
     CACHE_PATH.chmod(0o600)  # contains the license key — not secret, but no reason to leave it world-readable
 
 
-def _verify_with_gumroad():
+def _verify_with_lemonsqueezy() -> bool | None:
     try:
         resp = requests.post(
-            "https://api.gumroad.com/v2/licenses/verify",
-            data={
-                "product_id": config.GUMROAD_PRODUCT_ID,
-                "license_key": config.LICENSE_KEY,
-                "increment_uses_count": "false",
-            },
+            "https://api.lemonsqueezy.com/v1/licenses/validate",
+            headers={"Accept": "application/json"},
+            data={"license_key": config.LICENSE_KEY},
             timeout=10,
         )
         data = resp.json()
-        return bool(data.get("success"))
+        return bool(data.get("valid"))
     except (requests.RequestException, ValueError):
         return None  # network/parse failure, distinct from "invalid key"
 
 
-def is_licensed():
-    if not config.GUMROAD_PRODUCT_ID:
-        return True  # licensing not configured — personal/dev instance, no gate
+def is_licensed() -> bool:
+    if not config.LICENSE_REQUIRED:
+        return True  # licensing not enabled — personal/dev instance, no gate
 
     if not config.LICENSE_KEY:
         return False
@@ -62,7 +59,7 @@ def is_licensed():
         if cache.get("valid") and age < RECHECK_SECONDS:
             return True
 
-    result = _verify_with_gumroad()
+    result = _verify_with_lemonsqueezy()
 
     if result is True:
         _write_cache(True)

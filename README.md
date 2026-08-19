@@ -59,23 +59,37 @@ that's the exact silent-deletion pattern this tool exists to catch.
 
 ## Selling this (Path A — bring-your-own-token)
 
-Sold as the CLI itself (a paid GitHub repo / license key), never as a hosted service.
+Sold as the CLI itself (a standalone binary or a license-gated repo), never as a hosted service.
 Buyers run it on their own machine with their own Todoist/Asana token — you never see their
 credentials or task data. This is also the compliant model: Todoist's ToS prohibits transferring
 access granted to *your* account, so a shared-token hosted version isn't just riskier, it's
 against the terms. Each customer must generate their own token.
 
-Licensing is optional and off by default. To enable it:
+Pricing: one-time lifetime license ($29–39), or $19/yr — no monthly subscription (see
+`LAUNCH.md` for the reasoning). License checks run against **Lemon Squeezy**'s free License API
+(~5.5% total fee vs. Gumroad's ~14%, same free verify-license capability).
+
+Licensing is off by default. To enable it:
 
 ```
-export TASKGUARDIAN_GUMROAD_PRODUCT_ID="your_gumroad_product_id"
+export TASKGUARDIAN_LICENSE_REQUIRED=1
 ```
 
 With that unset (the default for your own personal instance), every command runs unlicensed —
 no gate. Once set, `snapshot`/`restore` require a valid `TASKGUARDIAN_LICENSE_KEY`
-(env var or Keychain entry `taskguardian_license`), verified against Gumroad's free license API,
-cached for 7 days, with a 30-day offline grace period so a Gumroad outage doesn't lock out a
-paying customer mid-trip.
+(env var or Keychain entry `taskguardian_license`), verified against Lemon Squeezy's license API,
+cached for 7 days, with a 30-day offline grace period so a payment-provider outage doesn't lock
+out a paying customer mid-trip.
+
+## Packaging (standalone binary, no Python required for the buyer)
+
+```
+./.venv/bin/pip install -r requirements-dev.txt
+./scripts/build_release.sh          # builds dist/taskguardian-bin for your current OS, smoke-tests it
+```
+
+`.github/workflows/release.yml` builds macOS/Linux/Windows binaries automatically and attaches
+them to a GitHub release whenever a `v*` tag is pushed — no local cross-compilation needed.
 
 ## Testing
 
@@ -99,9 +113,12 @@ taskguardian/
   storage.py             git-backed snapshot read/write
   restore.py             diff old vs current, report/restore missing tasks (multi-source)
   monitor.py             healthchecks.io ping + ntfy alert
-  license.py             optional Gumroad license gate
+  license.py             optional Lemon Squeezy license gate
 taskguardian.py           CLI entrypoint (init / snapshot / restore / status)
 snapshots/                git-tracked JSON snapshots (the actual backup data)
 tests/                    pytest suite, 15 tests
-.github/workflows/        GitHub Actions daily cron
+scripts/build_release.sh  local PyInstaller standalone-binary build + smoke test
+landing/                  marketing landing page
+LAUNCH.md                 positioning, pricing, distribution, launch-week sequence
+.github/workflows/        daily snapshot cron + tagged-release cross-platform binary builds
 ```

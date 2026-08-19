@@ -25,5 +25,5 @@ ASANA_TOKEN = get_token("ASANA_ACCESS_TOKEN", "asana_token")
 HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")
 
-GUMROAD_PRODUCT_ID = os.environ.get("TASKGUARDIAN_GUMROAD_PRODUCT_ID")
+LICENSE_REQUIRED = os.environ.get("TASKGUARDIAN_LICENSE_REQUIRED", "").lower() in ("1", "true", "yes")
 LICENSE_KEY = get_token("TASKGUARDIAN_LICENSE_KEY", "taskguardian_license")
