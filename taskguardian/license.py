@@ -27,6 +27,7 @@ def _write_cache(valid):
         "valid": valid,
         "checked_at": time.time(),
     }))
+    CACHE_PATH.chmod(0o600)  # contains the license key — not secret, but no reason to leave it world-readable
 
 
 def _verify_with_gumroad():

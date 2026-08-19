@@ -118,6 +118,9 @@ def cmd_init(args: argparse.Namespace) -> int:
         return 1
 
     account = f"{source}_token"
+    # token is briefly visible to other local processes via `ps` during this call — macOS's
+    # `security add-generic-password` has no stdin input mode. Acceptable for a single-user
+    # local setup wizard; not something to harden further here.
     result = subprocess.run(
         ["security", "add-generic-password", "-a", account, "-s", "taskguardian", "-w", token, "-U"],
         capture_output=True, text=True, check=False,
