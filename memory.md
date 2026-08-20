@@ -41,15 +41,38 @@ Global Python style rules (type hints on all signatures) were applied to code wr
 in session 2 but not fully retrofitted onto everything from session 1. Low priority, code
 works and is tested.
 
+## Status (20 Aug 2026, session 3 — rename + ship)
+- Renamed TaskGuardian → **UnDeleted** throughout: CLI command, package dir, Keychain service
+  name, env var prefix (`UNDELETED_LICENSE_*`), all docs, workflows, landing page. Existing
+  Keychain token migrated to the new service name, old entry deleted. `.venv` rebuilt (its
+  scripts hardcoded the old absolute path after the project folder itself was renamed).
+- **Security incident, resolved**: a `grep` during debugging accidentally printed a live
+  `GITHUB_TOKEN` (classic PAT, plaintext in `~/.zshrc`) into the chat transcript. Turned out
+  already dead (not listed under GitHub's own token pages, `gh auth status` confirmed invalid)
+  — but treated as compromised regardless. Removed from `~/.zshrc`, replaced with `gh auth
+  login` (browser device-code flow, keyring-backed, no dotfile secret). Also had to run `gh
+  auth setup-git` and `gh auth refresh -s workflow` (missing OAuth scope blocked pushing
+  `.github/workflows/*.yml`) before pushes actually worked.
+- **Pushed to GitHub for real**: `github.com/liveskyhigh84/undeleted`, all 3 repo secrets
+  verified present (`TODOIST_API_TOKEN`, `HEALTHCHECKS_URL`, `NTFY_TOPIC`) before the push —
+  they were configured correctly even before the code existed remotely.
+- **v1.0.0 tagged and pushed** — `.github/workflows/release.yml` triggered, building macOS/
+  Linux/Windows binaries.
+- **GitHub Pages live**: `/docs` folder on `master` (Pages only supports root or `/docs`, not
+  arbitrary folders — mirrored `landing/index.html` → `docs/index.html` to work around that).
+  Live at `liveskyhigh84.github.io/undeleted`.
+- **Local monitoring wired and tested**: `HEALTHCHECKS_URL` retrieved from Leon's already-
+  logged-in healthchecks.io account (`https://hc-ping.com/c4d07d88-...`, "My First Check"),
+  `NTFY_TOPIC=undeleted-leon-8f3k2x9q` provided by Leon. Both added to `~/.zshrc`. Test ntfy
+  push sent and confirmed delivered.
+
 ## Next actions
 1. Same live test for Asana once a token exists.
-2. Push to a real GitHub remote (needed for the release workflow and the daily snapshot cron
-   to actually run — right now they're wired but inert against a local-only repo).
-3. Create the Lemon Squeezy product (License Key type), get pricing live.
-4. Tag `v1.0.0` to trigger the first real binary release.
-5. Deploy `landing/index.html` (GitHub Pages is the free, already-set-up path).
-6. Sign up for healthchecks.io + ntfy.sh if the alerting layer is wanted.
-7. Work the LAUNCH.md day 1/3/7 sequence once the above is live.
+2. **Lemon Squeezy** — Leon creating the account himself (account creation + tax/business info
+   isn't something to automate). Once the License Key product exists: flip
+   `UNDELETED_LICENSE_REQUIRED=1` and swap the two placeholder `href="#"` buttons in
+   `landing/index.html` (and `docs/index.html`, kept in sync) for real checkout links.
+3. Work the LAUNCH.md day 1/3/7 sequence once pricing is live.
 
-Full step-by-step for all of this is in the "UnDeleted: Ship Runbook" artifact from this
-session — Phase 1 (this live test) is now the only phase marked done.
+Full step-by-step in the "UnDeleted: Ship Runbook" artifact — Phases 1, 2, 4, 5(partial: env
+vars set, GitHub Pages done) are closed. Phase 3 (Lemon Squeezy) and 7 (launch) remain.
