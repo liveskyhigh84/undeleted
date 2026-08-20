@@ -1,6 +1,6 @@
 import time
 
-from taskguardian import config, license
+from undeleted import config, license
 
 
 def test_licensing_disabled_by_default_means_always_licensed(monkeypatch):

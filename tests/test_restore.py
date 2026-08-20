@@ -1,4 +1,4 @@
-from taskguardian.restore import find_missing
+from undeleted.restore import find_missing
 
 
 def test_find_missing_returns_tasks_no_longer_present():

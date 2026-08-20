@@ -6,7 +6,7 @@ import requests
 
 from . import config
 
-CACHE_PATH = Path.home() / ".taskguardian" / "license_cache.json"
+CACHE_PATH = Path.home() / ".undeleted" / "license_cache.json"
 RECHECK_SECONDS = 7 * 24 * 3600
 OFFLINE_GRACE_SECONDS = 30 * 24 * 3600
 

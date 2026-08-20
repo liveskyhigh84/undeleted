@@ -1,4 +1,4 @@
-# TaskGuardian — Launch Plan
+# UnDeleted — Launch Plan
 
 ## Positioning
 
@@ -45,7 +45,7 @@ one-time cleanly, no dunning/cancellation flow needed.
 ## Pre-launch checklist
 
 - [ ] Lemon Squeezy product created, price set ($29–39 lifetime / $19 annual)
-- [ ] `TASKGUARDIAN_LICENSE_REQUIRED=1` set for the shipped/packaged build only — stays unset
+- [ ] `UNDELETED_LICENSE_REQUIRED=1` set for the shipped/packaged build only — stays unset
       for Leon's own personal instance
 - [ ] Cross-platform binaries built via `.github/workflows/release.yml` on a version tag
 - [ ] Landing page live (see `landing/index.html`)

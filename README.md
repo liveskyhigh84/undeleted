@@ -1,21 +1,21 @@
-# TaskGuardian
+# UnDeleted
 
 Backup/diff/restore safety net for Todoist and Asana. Git is the version-history engine —
 no custom diff code. Not a replacement app; runs alongside the tool you already use.
 
-> TaskGuardian is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.
+> UnDeleted is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.
 
 ## Setup
 
 ```
-cd ~/Developer/TaskGuardian
+cd ~/Developer/UnDeleted
 ./.venv/bin/pip install -r requirements.txt   # already done on first build
 ```
 
 Interactive setup (stores your token in macOS Keychain):
 
 ```
-taskguardian init
+undeleted init
 ```
 
 Or manually:
@@ -23,7 +23,7 @@ Or manually:
    Asana personal access token: Asana → My Settings → Apps → Manage Developer Apps.
 2. Store it (pick one):
    - Env var: `export TODOIST_API_TOKEN="..."` / `export ASANA_ACCESS_TOKEN="..."`
-   - macOS Keychain: `security add-generic-password -a todoist_token -s taskguardian -w "TOKEN"`
+   - macOS Keychain: `security add-generic-password -a todoist_token -s undeleted -w "TOKEN"`
 3. Optional monitoring (both free, no card):
    - [healthchecks.io](https://healthchecks.io) → create a check → `export HEALTHCHECKS_URL="https://hc-ping.com/your-uuid"`
    - [ntfy.sh](https://ntfy.sh) → pick a long random topic slug → `export NTFY_TOPIC="your-random-slug"` → subscribe to it in the ntfy app
@@ -31,12 +31,12 @@ Or manually:
 ## Usage
 
 ```
-taskguardian snapshot --source todoist          # pull tasks, commit if changed
-taskguardian snapshot --source asana
-taskguardian restore --source todoist --commit HEAD~5     # dry-run: show what's missing
-taskguardian restore --source todoist --commit HEAD~5 --no-dry-run   # actually restore
-taskguardian status                              # tracked-task counts + snapshot history
-taskguardian status --notify                     # also push the summary via ntfy
+undeleted snapshot --source todoist          # pull tasks, commit if changed
+undeleted snapshot --source asana
+undeleted restore --source todoist --commit HEAD~5     # dry-run: show what's missing
+undeleted restore --source todoist --commit HEAD~5 --no-dry-run   # actually restore
+undeleted status                              # tracked-task counts + snapshot history
+undeleted status --notify                     # also push the summary via ntfy
 ```
 
 Each snapshot overwrites `snapshots/<source>.json` and commits it — `git log` and `git diff`
@@ -45,7 +45,7 @@ on that one file give you full history for free.
 ## Scheduling (pick one)
 
 **Local (Mac must be on):** add a `launchd` plist or cron entry calling
-`~/Developer/TaskGuardian/taskguardian.py snapshot` daily.
+`~/Developer/UnDeleted/undeleted.py snapshot` daily.
 
 **GitHub Actions (runs even when your Mac's off, recommended):**
 1. `git remote add origin <your private repo URL>` and push.
@@ -72,12 +72,12 @@ Pricing: one-time lifetime license ($29–39), or $19/yr — no monthly subscrip
 Licensing is off by default. To enable it:
 
 ```
-export TASKGUARDIAN_LICENSE_REQUIRED=1
+export UNDELETED_LICENSE_REQUIRED=1
 ```
 
 With that unset (the default for your own personal instance), every command runs unlicensed —
-no gate. Once set, `snapshot`/`restore` require a valid `TASKGUARDIAN_LICENSE_KEY`
-(env var or Keychain entry `taskguardian_license`), verified against Lemon Squeezy's license API,
+no gate. Once set, `snapshot`/`restore` require a valid `UNDELETED_LICENSE_KEY`
+(env var or Keychain entry `undeleted_license`), verified against Lemon Squeezy's license API,
 cached for 7 days, with a 30-day offline grace period so a payment-provider outage doesn't lock
 out a paying customer mid-trip.
 
@@ -85,7 +85,7 @@ out a paying customer mid-trip.
 
 ```
 ./.venv/bin/pip install -r requirements-dev.txt
-./scripts/build_release.sh          # builds dist/taskguardian-bin for your current OS, smoke-tests it
+./scripts/build_release.sh          # builds dist/undeleted-bin for your current OS, smoke-tests it
 ```
 
 `.github/workflows/release.yml` builds macOS/Linux/Windows binaries automatically and attaches
@@ -96,7 +96,7 @@ them to a GitHub release whenever a `v*` tag is pushed — no local cross-compil
 ```
 ./.venv/bin/pip install -r requirements-dev.txt
 ./.venv/bin/pytest -q
-./.venv/bin/ruff check taskguardian.py taskguardian/
+./.venv/bin/ruff check undeleted.py undeleted/
 ```
 
 15 tests cover `find_missing` diff logic, git-backed snapshot read/write/commit (against a real
@@ -106,7 +106,7 @@ Not covered: a live run against a real Todoist/Asana account — needs your toke
 ## Files
 
 ```
-taskguardian/
+undeleted/
   config.py             token loading (env var → Keychain fallback)
   todoist_snapshot.py   fetch + restore via todoist-api-python
   asana_snapshot.py     fetch + restore via the official asana client
@@ -114,7 +114,7 @@ taskguardian/
   restore.py             diff old vs current, report/restore missing tasks (multi-source)
   monitor.py             healthchecks.io ping + ntfy alert
   license.py             optional Lemon Squeezy license gate
-taskguardian.py           CLI entrypoint (init / snapshot / restore / status)
+undeleted.py           CLI entrypoint (init / snapshot / restore / status)
 snapshots/                git-tracked JSON snapshots (the actual backup data)
 tests/                    pytest suite, 15 tests
 scripts/build_release.sh  local PyInstaller standalone-binary build + smoke test

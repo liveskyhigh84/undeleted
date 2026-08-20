@@ -1,4 +1,4 @@
-#!/Users/leonthompson/Developer/TaskGuardian/.venv/bin/python3
+#!/Users/leonthompson/Developer/UnDeleted/.venv/bin/python3
 import argparse
 import getpass
 import json
@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from taskguardian import (
+from undeleted import (
     asana_snapshot,
     license,
     monitor,
@@ -35,8 +35,8 @@ def require_license() -> bool:
     if license.is_licensed():
         return True
     print(
-        "License check failed. Set TASKGUARDIAN_LICENSE_KEY to a valid Lemon Squeezy license key,\n"
-        "or unset TASKGUARDIAN_LICENSE_REQUIRED for a personal/dev instance.",
+        "License check failed. Set UNDELETED_LICENSE_KEY to a valid Lemon Squeezy license key,\n"
+        "or unset UNDELETED_LICENSE_REQUIRED for a personal/dev instance.",
         file=sys.stderr,
     )
     return False
@@ -53,7 +53,7 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
         tasks = backend.fetch_tasks()
     except Exception as e:  # noqa: BLE001 — CLI boundary: any backend failure must be caught and reported, not crash
         monitor.ping_healthchecks(status="fail")
-        monitor.notify(f"TaskGuardian: {source} snapshot failed — {e}")
+        monitor.notify(f"UnDeleted: {source} snapshot failed — {e}")
         print(f"Error: {e}", file=sys.stderr)
         return 1
 
@@ -64,7 +64,7 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
         drop = (before - len(tasks)) / before
         if drop >= DROP_ALERT_THRESHOLD:
             monitor.notify(
-                f"TaskGuardian: {source} task count dropped {drop:.0%} "
+                f"UnDeleted: {source} task count dropped {drop:.0%} "
                 f"({before} → {len(tasks)}). Possible silent deletion — check {sha or 'latest snapshot'}."
             )
 
@@ -94,10 +94,10 @@ def cmd_status(args: argparse.Namespace) -> int:
         lines.append(f"{source}: {count} tasks tracked, {snapshot_count} snapshots taken")
 
     if not lines:
-        print("No snapshots yet — run `taskguardian snapshot` first.")
+        print("No snapshots yet — run `undeleted snapshot` first.")
         return 0
 
-    summary = "TaskGuardian status — " + "; ".join(lines)
+    summary = "UnDeleted status — " + "; ".join(lines)
     print(summary)
     if args.notify:
         monitor.notify(summary)
@@ -105,7 +105,7 @@ def cmd_status(args: argparse.Namespace) -> int:
 
 
 def cmd_init(args: argparse.Namespace) -> int:
-    print("TaskGuardian setup\n")
+    print("UnDeleted setup\n")
     source = input("Which service? [todoist/asana]: ").strip().lower()
     if source not in ("todoist", "asana"):
         print("Must be 'todoist' or 'asana'", file=sys.stderr)
@@ -122,7 +122,7 @@ def cmd_init(args: argparse.Namespace) -> int:
     # `security add-generic-password` has no stdin input mode. Acceptable for a single-user
     # local setup wizard; not something to harden further here.
     result = subprocess.run(
-        ["security", "add-generic-password", "-a", account, "-s", "taskguardian", "-w", token, "-U"],
+        ["security", "add-generic-password", "-a", account, "-s", "undeleted", "-w", token, "-U"],
         capture_output=True, text=True, check=False,
     )
     if result.returncode != 0:
@@ -131,12 +131,12 @@ def cmd_init(args: argparse.Namespace) -> int:
               else "You can instead: export ASANA_ACCESS_TOKEN=\"...\"")
         return 1
 
-    print(f"\nSaved to macOS Keychain (account: {account}). Run: taskguardian snapshot --source {source}")
+    print(f"\nSaved to macOS Keychain (account: {account}). Run: undeleted snapshot --source {source}")
     return 0
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="taskguardian", description="Backup, diff, and restore for Todoist/Asana.")
+    parser = argparse.ArgumentParser(prog="undeleted", description="Backup, diff, and restore for Todoist/Asana.")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_init = sub.add_parser("init", help="Interactive setup — store an API token in Keychain")

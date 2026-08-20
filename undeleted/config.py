@@ -5,7 +5,7 @@ import subprocess
 def _from_keychain(account):
     try:
         result = subprocess.run(
-            ["security", "find-generic-password", "-a", account, "-s", "taskguardian", "-w"],
+            ["security", "find-generic-password", "-a", account, "-s", "undeleted", "-w"],
             capture_output=True, text=True, check=True,
         )
         return result.stdout.strip()
@@ -25,5 +25,5 @@ ASANA_TOKEN = get_token("ASANA_ACCESS_TOKEN", "asana_token")
 HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")
 
-LICENSE_REQUIRED = os.environ.get("TASKGUARDIAN_LICENSE_REQUIRED", "").lower() in ("1", "true", "yes")
-LICENSE_KEY = get_token("TASKGUARDIAN_LICENSE_KEY", "taskguardian_license")
+LICENSE_REQUIRED = os.environ.get("UNDELETED_LICENSE_REQUIRED", "").lower() in ("1", "true", "yes")
+LICENSE_KEY = get_token("UNDELETED_LICENSE_KEY", "undeleted_license")

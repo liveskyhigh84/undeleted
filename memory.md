@@ -1,4 +1,4 @@
-# TaskGuardian — project memory
+# UnDeleted — project memory
 
 ## What this is
 Backup/diff/restore safety net for Todoist (Asana added) — sold as Path A: bring-your-own-token
@@ -7,8 +7,8 @@ reviews (18 Aug 2026). Brutal verdict: STOP on a competing to-do app, GO on this
 companion tool — precedent: BackupLABS/NotionBackups.com already monetize this exact model.
 
 ## Status (19 Aug 2026)
-- **Live-tested for real, for the first time**: `taskguardian init` → Keychain → `taskguardian
-  snapshot --source todoist` → committed `2eb485f` → `taskguardian restore --source todoist
+- **Live-tested for real, for the first time**: `undeleted init` → Keychain → `undeleted
+  snapshot --source todoist` → committed `2eb485f` → `undeleted restore --source todoist
   --commit HEAD` correctly reported nothing missing. The "never run against a live account"
   gap is closed. Snapshot showed 0 tasks — expected if Leon's active Todoist list is empty
   (the API returns active/incomplete tasks only); not investigated further, not alarming
@@ -16,7 +16,7 @@ companion tool — precedent: BackupLABS/NotionBackups.com already monetize this
 - Asana: module built (`asana_snapshot.py`), same interface, still not live-tested (needs an
   Asana token — same open item as Todoist was until today).
 - Licensing: switched from Gumroad to **Lemon Squeezy** (~5.5% fee vs ~14%, same free
-  license-validate API). Gate is `TASKGUARDIAN_LICENSE_REQUIRED=1` (off by default — Leon's
+  license-validate API). Gate is `UNDELETED_LICENSE_REQUIRED=1` (off by default — Leon's
   own instance runs ungated). `license.py` calls `POST
   api.lemonsqueezy.com/v1/licenses/validate`, 7-day cache, 30-day offline grace period.
 - Packaging: PyInstaller `--onefile` build verified locally (15MB macOS binary, ran `--help`/
@@ -51,5 +51,5 @@ works and is tested.
 6. Sign up for healthchecks.io + ntfy.sh if the alerting layer is wanted.
 7. Work the LAUNCH.md day 1/3/7 sequence once the above is live.
 
-Full step-by-step for all of this is in the "TaskGuardian: Ship Runbook" artifact from this
+Full step-by-step for all of this is in the "UnDeleted: Ship Runbook" artifact from this
 session — Phase 1 (this live test) is now the only phase marked done.

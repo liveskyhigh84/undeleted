@@ -1,4 +1,4 @@
-name: TaskGuardian snapshot
+name: UnDeleted snapshot
 
 on:
   schedule:
@@ -22,12 +22,12 @@ jobs:
           TODOIST_API_TOKEN: ${{ secrets.TODOIST_API_TOKEN }}
           HEALTHCHECKS_URL: ${{ secrets.HEALTHCHECKS_URL }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python taskguardian.py snapshot
+        run: python undeleted.py snapshot
 
       - name: Commit and push snapshot
         run: |
-          git config user.name "TaskGuardian Bot"
-          git config user.email "taskguardian@localhost"
+          git config user.name "UnDeleted Bot"
+          git config user.email "undeleted@localhost"
           git add snapshots/
           git diff --staged --quiet || git commit -m "snapshot: automated run $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push

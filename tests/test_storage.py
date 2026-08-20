@@ -3,7 +3,7 @@ import subprocess
 
 import pytest
 
-from taskguardian import storage
+from undeleted import storage
 
 
 @pytest.fixture

@@ -11,11 +11,11 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            asset: taskguardian-macos
+            asset: undeleted-macos
           - os: ubuntu-latest
-            asset: taskguardian-linux
+            asset: undeleted-linux
           - os: windows-latest
-            asset: taskguardian-windows.exe
+            asset: undeleted-windows.exe
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -28,16 +28,16 @@ jobs:
       - run: pip install -r requirements.txt pyinstaller
 
       - name: Build binary
-        run: pyinstaller --onefile --name taskguardian-bin --paths . taskguardian.py
+        run: pyinstaller --onefile --name undeleted-bin --paths . undeleted.py
 
       - name: Rename binary
         shell: bash
         run: |
           mkdir -p release
           if [ "${{ runner.os }}" = "Windows" ]; then
-            cp dist/taskguardian-bin.exe "release/${{ matrix.asset }}"
+            cp dist/undeleted-bin.exe "release/${{ matrix.asset }}"
           else
-            cp dist/taskguardian-bin "release/${{ matrix.asset }}"
+            cp dist/undeleted-bin "release/${{ matrix.asset }}"
           fi
 
       - uses: actions/upload-artifact@v4
