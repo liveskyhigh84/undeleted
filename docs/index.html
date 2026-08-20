@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnDeleted: Get your lost tasks back in 30 seconds</title>
+<meta name="description" content="Todoist and Asana silently lose tasks after updates. UnDeleted backs them up automatically and restores what's missing, without ever seeing your data.">
+<style>
+  :root {
+    --ground: #0B1416; --surface: #111C1F; --surface-2: #162326;
+    --ink: #EAF3F2; --ink-muted: #9BB0B3; --ink-faint: #62787B;
+    --rule: #223235;
+    --accent: #6FD6C4; --accent-ink: #08201B;
+    --amber: #E8A94E; --amber-ink: #241503;
+    --good: #7FCB9E;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 24px 60px -24px rgba(0,0,0,0.7);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: Charter, "Iowan Old Style", Georgia, serif; font-weight: 700; text-wrap: balance; margin: 0; }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  a { color: inherit; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Nav */
+  nav.top { border-bottom: 1px solid var(--rule); padding: 1.1rem 0; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: Charter, Georgia, serif; font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; }
+  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  .nav-cta { background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 0.86rem; padding: 0.5rem 1rem; border-radius: 7px; text-decoration: none; }
+
+  /* Hero */
+  .hero { padding: 5.5rem 0 4rem; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -20% -10% auto -10%; height: 60%; pointer-events: none;
+    background: radial-gradient(ellipse at 30% 0%, rgba(111,214,196,0.16), transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(232,169,78,0.08), transparent 55%);
+  }
+  .hero-inner { position: relative; max-width: 760px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); font-weight: 700; background: rgba(232,169,78,0.1); border: 1px solid rgba(232,169,78,0.25); padding: 0.35rem 0.75rem; border-radius: 999px; }
+  .hero h1 { font-size: clamp(2.4rem, 1.6rem + 3.6vw, 4rem); line-height: 1.03; margin: 1.3rem 0 1.3rem; }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero p.lede { color: var(--ink-muted); font-size: 1.18rem; max-width: 52ch; margin: 0 0 2.2rem; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 1rem;
+    padding: 0.9rem 1.6rem; border-radius: 9px; text-decoration: none; box-shadow: var(--shadow);
+    transition: transform 0.12s ease;
+  }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-secondary { color: var(--ink-muted); font-size: 0.94rem; text-decoration: none; border-bottom: 1px dashed var(--ink-faint); padding-bottom: 2px; }
+
+  .trust-strip { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 2.4rem; font-size: 0.84rem; color: var(--ink-faint); }
+  .trust-strip span { display: flex; align-items: center; gap: 0.4rem; }
+  .trust-strip .ok { color: var(--good); }
+
+  /* Sections */
+  section { padding: 4.2rem 0; border-top: 1px solid var(--rule); }
+  .section-eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
+  section h2 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem); margin: 0.6rem 0 1rem; max-width: 26ch; }
+  section p.section-lede { color: var(--ink-muted); font-size: 1.02rem; max-width: 56ch; margin: 0 0 2.4rem; }
+
+  /* Steps */
+  .steps { display: flex; gap: 0; }
+  .step { flex: 1; background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent); padding: 1.6rem; position: relative; }
+  .step:not(:first-child) { border-left: none; }
+  .step:first-child { border-radius: 12px 0 0 12px; }
+  .step:last-child { border-radius: 0 12px 12px 0; }
+  .step:not(:last-child)::after {
+    content: "→"; position: absolute; right: -0.85rem; top: 1.7rem; z-index: 2;
+    color: var(--accent); background: var(--ground); width: 1.7rem; height: 1.7rem;
+    border-radius: 50%; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+  }
+  .step h3 { font-size: 1.02rem; margin: 0 0 0.5rem; font-family: -apple-system, sans-serif; }
+  .step p { margin: 0; font-size: 0.92rem; color: var(--ink-muted); }
+
+  /* Proof quote */
+  .proof { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 2rem 2.2rem; box-shadow: var(--shadow); }
+  .proof blockquote { margin: 0; font-family: Charter, Georgia, serif; font-size: 1.25rem; line-height: 1.5; color: var(--ink); font-style: italic; }
+  .proof cite { display: block; margin-top: 1rem; font-style: normal; font-size: 0.82rem; color: var(--ink-faint); }
+
+  /* Pricing */
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  .price-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 1.9rem; position: relative; }
+  .price-card.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); }
+  .price-card .badge { position: absolute; top: -0.7rem; right: 1.3rem; background: var(--accent); color: var(--accent-ink); font-size: 0.7rem; font-weight: 800; padding: 0.25rem 0.6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .price-card h3 { font-size: 1.1rem; font-family: -apple-system, sans-serif; margin-bottom: 0.4rem; }
+  .price-card .amount { font-family: Charter, Georgia, serif; font-size: 2.4rem; font-weight: 700; margin: 0.5rem 0 0.2rem; }
+  .price-card .amount span { font-size: 1rem; color: var(--ink-faint); font-weight: 400; }
+  .price-card ul { list-style: none; margin: 1.3rem 0 1.6rem; padding: 0; display: grid; gap: 0.5rem; font-size: 0.9rem; color: var(--ink-muted); }
+  .price-card li::before { content: "✓ "; color: var(--good); font-weight: 700; }
+  .price-card .btn-primary { display: block; text-align: center; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 1.3rem 0; }
+  .faq-item h3 { font-size: 1rem; font-family: -apple-system, sans-serif; margin-bottom: 0.4rem; }
+  .faq-item p { margin: 0; color: var(--ink-muted); font-size: 0.92rem; max-width: 62ch; }
+
+  footer { padding: 2.6rem 0 3rem; }
+  footer p { font-size: 0.78rem; color: var(--ink-faint); margin: 0 0 0.5rem; max-width: 64ch; }
+
+  @media (max-width: 720px) {
+    .steps, .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot"></span>UnDeleted</div>
+    <a class="nav-cta" href="#pricing">Get lifetime access</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">⚠ Real, documented data-loss pattern</span>
+    <h1>Todoist just lost your tasks again. Get them back <em>in 30 seconds.</em></h1>
+    <p class="lede">A backup and restore layer for Todoist and Asana. Runs on your machine, uses your own API token, and never sends your task data anywhere. Git does the version history. You just get your tasks back.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="#pricing">Get lifetime access, $29</a>
+      <a class="btn-secondary" href="#how">See how it works ↓</a>
+    </div>
+    <div class="trust-strip">
+      <span><span class="ok">●</span> Your token never leaves your machine</span>
+      <span><span class="ok">●</span> Open source, audit it yourself</span>
+      <span><span class="ok">●</span> Not affiliated with Doist or Asana, Inc.</span>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-eyebrow">How it works</div>
+    <h2>Three commands. No account, no server, no exceptions.</h2>
+    <p class="section-lede">Every step runs locally or in your own free GitHub Actions job. Nothing routes through infrastructure anyone else operates.</p>
+    <div class="steps">
+      <div class="step"><h3>Connect your own token</h3><p>Generate a personal API token from Todoist or Asana's own settings. It's stored in your Keychain, never sent to us, because there's no "us" in the data path.</p></div>
+      <div class="step"><h3>Automatic snapshots</h3><p>A scheduled job pulls your task list and commits it to a git repo you control. Git's own history is the diff engine, nothing custom to trust.</p></div>
+      <div class="step"><h3>Restore what's missing</h3><p>One command diffs any past snapshot against your live list and recreates exactly what disappeared. Never destructive, never overwrites.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-eyebrow">Why this exists</div>
+    <div class="proof">
+      <blockquote>"An update deleted years of tasks. This isn't a one-off complaint: it's a recurring pattern across independent reviews on both Todoist and Asana's own support forums."</blockquote>
+      <cite>From the review analysis that led to building this (full writeup in the repo)</cite>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-eyebrow">Pricing</div>
+    <h2>Pay once. Own it forever.</h2>
+    <p class="section-lede">No subscription for a tool you hope to rarely need. Buy it, forget it, and it's there the one time it matters.</p>
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <span class="badge">Best value</span>
+        <h3>Lifetime license</h3>
+        <div class="amount">$29<span> one-time</span></div>
+        <ul>
+          <li>Todoist + Asana backup &amp; restore</li>
+          <li>Unlimited snapshots, unlimited restores</li>
+          <li>All future updates</li>
+          <li>Standalone binary, no Python required</li>
+        </ul>
+        <a class="btn-primary" href="#">Buy lifetime access</a>
+      </div>
+      <div class="price-card">
+        <h3>Annual</h3>
+        <div class="amount">$19<span>/yr</span></div>
+        <ul>
+          <li>Everything in Lifetime</li>
+          <li>Lower upfront cost</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a class="btn-primary" href="#" style="background:var(--surface-2); color:var(--ink); border:1px solid var(--rule); box-shadow:none;">Buy annual license</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-eyebrow">FAQ</div>
+    <h2>Before you ask</h2>
+    <div class="faq-item"><h3>Do you ever see my tasks?</h3><p>No. The tool runs on your machine or your own GitHub Actions job, using a token only you hold. There is no server we operate that your data passes through.</p></div>
+    <div class="faq-item"><h3>Is this affiliated with Todoist or Asana?</h3><p>No. UnDeleted is an independent third-party tool built on their public APIs, not created by, affiliated with, or supported by Doist or Asana, Inc.</p></div>
+    <div class="faq-item"><h3>What if I lose tasks it can't restore?</h3><p>Restore only recreates tasks that exist in a past snapshot. If something was deleted before your first snapshot ran, there's nothing to restore from: set it up before you need it, not after.</p></div>
+    <div class="faq-item"><h3>Does it modify or delete anything?</h3><p>No. Restore is strictly additive, it only recreates what's missing. It never overwrites or deletes existing tasks.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>UnDeleted is an independent tool and is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.</p>
+    <p>&copy; 2026 UnDeleted.</p>
+  </div>
+</footer>
+
+</body>
+</html>
