@@ -23,6 +23,7 @@ def get_token(env_var, keychain_account):
 
 TODOIST_TOKEN = get_token("TODOIST_API_TOKEN", "todoist_token")
 ASANA_TOKEN = get_token("ASANA_ACCESS_TOKEN", "asana_token")
+CLICKUP_TOKEN = get_token("CLICKUP_API_TOKEN", "clickup_token")
 HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")
 

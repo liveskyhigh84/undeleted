@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from undeleted import (
     asana_snapshot,
+    clickup_snapshot,
     license,
     monitor,
     restore,
@@ -18,7 +19,9 @@ from undeleted import (
 )
 
 DROP_ALERT_THRESHOLD = 0.15
-_BACKENDS = {"todoist": todoist_snapshot, "asana": asana_snapshot}
+STALE_DAYS_THRESHOLD = 7
+_BACKENDS = {"todoist": todoist_snapshot, "asana": asana_snapshot, "clickup": clickup_snapshot}
+_TOKEN_ENV_VAR = {"todoist": "TODOIST_API_TOKEN", "asana": "ASANA_ACCESS_TOKEN", "clickup": "CLICKUP_API_TOKEN"}
 
 
 def previous_task_count(source: str) -> int | None:
@@ -81,8 +84,12 @@ def cmd_restore(args: argparse.Namespace) -> int:
 
 
 def cmd_status(args: argparse.Namespace) -> int:
+    import time
+    from datetime import datetime, timezone
+
     lines = []
-    for source in ("todoist", "asana"):
+    stale_sources = []
+    for source in _BACKENDS:
         count = previous_task_count(source)
         if count is None:
             continue
@@ -91,7 +98,20 @@ def cmd_status(args: argparse.Namespace) -> int:
             cwd=storage.SNAPSHOTS_DIR.parent, capture_output=True, text=True, check=False,
         )
         snapshot_count = len(log.stdout.strip().splitlines())
-        lines.append(f"{source}: {count} tasks tracked, {snapshot_count} snapshots taken")
+
+        last_ts = subprocess.run(
+            ["git", "log", "-1", "--format=%ct", "--", f"snapshots/{source}.json"],
+            cwd=storage.SNAPSHOTS_DIR.parent, capture_output=True, text=True, check=False,
+        )
+        line = f"{source}: {count} tasks tracked, {snapshot_count} snapshots taken"
+        if last_ts.stdout.strip():
+            last_dt = datetime.fromtimestamp(int(last_ts.stdout.strip()), tz=timezone.utc)
+            days_since = (time.time() - last_dt.timestamp()) / 86400
+            line += f", last snapshot {days_since:.1f}d ago"
+            if days_since >= STALE_DAYS_THRESHOLD:
+                stale_sources.append(source)
+                line += " (STALE)"
+        lines.append(line)
 
     if not lines:
         print("No snapshots yet — run `undeleted snapshot` first.")
@@ -99,6 +119,13 @@ def cmd_status(args: argparse.Namespace) -> int:
 
     summary = "UnDeleted status — " + "; ".join(lines)
     print(summary)
+    if stale_sources:
+        stale_msg = (
+            f"UnDeleted: no snapshot in {STALE_DAYS_THRESHOLD}+ days for "
+            f"{', '.join(stale_sources)} — check your cron job."
+        )
+        print(stale_msg, file=sys.stderr)
+        monitor.notify(stale_msg)
     if args.notify:
         monitor.notify(summary)
     return 0
@@ -106,9 +133,9 @@ def cmd_status(args: argparse.Namespace) -> int:
 
 def cmd_init(args: argparse.Namespace) -> int:
     print("UnDeleted setup\n")
-    source = input("Which service? [todoist/asana]: ").strip().lower()
-    if source not in ("todoist", "asana"):
-        print("Must be 'todoist' or 'asana'", file=sys.stderr)
+    source = input(f"Which service? [{'/'.join(_BACKENDS)}]: ").strip().lower()
+    if source not in _BACKENDS:
+        print(f"Must be one of: {', '.join(_BACKENDS)}", file=sys.stderr)
         return 1
 
     prompt = f"{source.capitalize()} API token (input hidden): "
@@ -127,8 +154,7 @@ def cmd_init(args: argparse.Namespace) -> int:
     )
     if result.returncode != 0:
         print(f"Couldn't save to Keychain: {result.stderr.strip()}", file=sys.stderr)
-        print(f"You can instead: export {source.upper()}_API_TOKEN=\"...\"" if source == "todoist"
-              else "You can instead: export ASANA_ACCESS_TOKEN=\"...\"")
+        print(f"You can instead: export {_TOKEN_ENV_VAR[source]}=\"...\"")
         return 1
 
     print(f"\nSaved to macOS Keychain (account: {account}). Run: undeleted snapshot --source {source}")
@@ -143,11 +169,11 @@ def main() -> None:
     p_init.set_defaults(func=cmd_init)
 
     p_snap = sub.add_parser("snapshot", help="Pull current tasks and commit a snapshot")
-    p_snap.add_argument("--source", choices=["todoist", "asana"], default="todoist")
+    p_snap.add_argument("--source", choices=list(_BACKENDS), default="todoist")
     p_snap.set_defaults(func=cmd_snapshot)
 
     p_restore = sub.add_parser("restore", help="Restore tasks missing since a given snapshot")
-    p_restore.add_argument("--source", choices=["todoist", "asana"], default="todoist")
+    p_restore.add_argument("--source", choices=list(_BACKENDS), default="todoist")
     p_restore.add_argument("--commit", default="HEAD~1", help="Git ref to restore from (default: HEAD~1)")
     p_restore.add_argument("--no-dry-run", action="store_true", help="Actually recreate missing tasks")
     p_restore.set_defaults(func=cmd_restore)
