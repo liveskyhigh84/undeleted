@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 
 def _from_keychain(account):
@@ -25,5 +26,15 @@ ASANA_TOKEN = get_token("ASANA_ACCESS_TOKEN", "asana_token")
 HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC")
 
-LICENSE_REQUIRED = os.environ.get("UNDELETED_LICENSE_REQUIRED", "").lower() in ("1", "true", "yes")
+IS_FROZEN = getattr(sys, "frozen", False)
+
+_license_env = os.environ.get("UNDELETED_LICENSE_REQUIRED")
+if _license_env is not None:
+    LICENSE_REQUIRED = _license_env.lower() in ("1", "true", "yes")
+else:
+    # Default: gated when running as a built binary (what buyers download),
+    # open when running from source (your own dev/personal use). An explicit
+    # env var above always overrides this, in either direction.
+    LICENSE_REQUIRED = IS_FROZEN
+
 LICENSE_KEY = get_token("UNDELETED_LICENSE_KEY", "undeleted_license")
