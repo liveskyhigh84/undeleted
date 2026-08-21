@@ -1,9 +1,16 @@
 import json
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-SNAPSHOTS_DIR = Path(__file__).resolve().parent.parent / "snapshots"
+if getattr(sys, "frozen", False):
+    # PyInstaller bundles run from a temp extraction dir that's wiped on exit —
+    # __file__ there is useless for persistence. Buyers running the compiled
+    # binary get a stable, private location instead.
+    SNAPSHOTS_DIR = Path.home() / ".undeleted" / "snapshots"
+else:
+    SNAPSHOTS_DIR = Path(__file__).resolve().parent.parent / "snapshots"
 
 
 def _run_git(*args):
@@ -11,7 +18,7 @@ def _run_git(*args):
 
 
 def ensure_repo():
-    SNAPSHOTS_DIR.mkdir(exist_ok=True)
+    SNAPSHOTS_DIR.mkdir(parents=True, exist_ok=True)
     if not (SNAPSHOTS_DIR.parent / ".git").exists():
         _run_git("init")
 

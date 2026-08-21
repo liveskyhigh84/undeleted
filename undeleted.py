@@ -35,8 +35,8 @@ def require_license() -> bool:
     if license.is_licensed():
         return True
     print(
-        "License check failed. Set UNDELETED_LICENSE_KEY to a valid Lemon Squeezy license key,\n"
-        "or unset UNDELETED_LICENSE_REQUIRED for a personal/dev instance.",
+        "License check failed. Set UNDELETED_LICENSE_KEY to a valid Lemon Squeezy license key.\n"
+        "Don't have one yet? undeleted.lemonsqueezy.com",
         file=sys.stderr,
     )
     return False
