@@ -69,14 +69,19 @@ Pricing: one-time lifetime license ($29–39), or $19/yr — no monthly subscrip
 `LAUNCH.md` for the reasoning). License checks run against **Lemon Squeezy**'s free License API
 (~5.5% total fee vs. Gumroad's ~14%, same free verify-license capability).
 
-Licensing is off by default. To enable it:
+Licensing gates **automatically** based on how the code is running — no manual flag needed:
 
-```
-export UNDELETED_LICENSE_REQUIRED=1
-```
+- Running from source (`python undeleted.py`, or the `undeleted` command symlinked to it) →
+  always ungated. This is your own personal instance.
+- Running as a built binary (`dist/undeleted-bin`, or anything downloaded from a GitHub
+  Release) → gated by default, since that's what buyers actually receive.
 
-With that unset (the default for your own personal instance), every command runs unlicensed —
-no gate. Once set, `snapshot`/`restore` require a valid `UNDELETED_LICENSE_KEY`
+`UNDELETED_LICENSE_REQUIRED` still exists as an explicit override in either direction (e.g. to
+test the gate against source, or to disable it on a binary), but nothing needs to be set for
+normal use — the repo stays open for anyone who wants to build it themselves, and every
+`scripts/build_release.sh` / tagged-release binary ships gated automatically.
+
+Once gated, `snapshot`/`restore` require a valid `UNDELETED_LICENSE_KEY`
 (env var or Keychain entry `undeleted_license`), verified against Lemon Squeezy's license API,
 cached for 7 days, with a 30-day offline grace period so a payment-provider outage doesn't lock
 out a paying customer mid-trip.
