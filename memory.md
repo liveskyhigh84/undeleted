@@ -66,13 +66,29 @@ works and is tested.
   `NTFY_TOPIC=undeleted-leon-8f3k2x9q` provided by Leon. Both added to `~/.zshrc`. Test ntfy
   push sent and confirmed delivered.
 
+## Status (20 Aug 2026, session 4 — Lemon Squeezy live)
+- Account created by Leon (website URL step used the new GitHub Pages URL; picked "Continue
+  with Lemon Squeezy," not the newer Stripe-backed Managed Payments option, since the License
+  API compatibility with Managed Payments wasn't confirmed and the existing `license.py`
+  integration is built against the classic path).
+- Store still shows "under review" (Lemon Squeezy manually approves new stores) — products
+  and checkout links work in Test mode in the meantime, will go live on approval.
+- **Two products published**, both with license keys enabled:
+  - `UnDeleted` — $29 one-time, unlimited license length. Checkout:
+    `https://undeleted.lemonsqueezy.com/checkout/buy/d360e60f-24b4-44c4-9019-bfeb8e0bc50d`
+  - `UnDeleted — Annual` — $19/yr subscription, license tied to subscription status (no
+    separate length field for subscriptions). Checkout:
+    `https://undeleted.lemonsqueezy.com/checkout/buy/d7e88644-ec2c-4fab-a015-b5ad1618e640`
+- Both checkout links wired into `landing/index.html` and `docs/index.html` (kept in sync),
+  replacing the `href="#"` placeholders. Pushed.
+
 ## Next actions
 1. Same live test for Asana once a token exists.
-2. **Lemon Squeezy** — Leon creating the account himself (account creation + tax/business info
-   isn't something to automate). Once the License Key product exists: flip
-   `UNDELETED_LICENSE_REQUIRED=1` and swap the two placeholder `href="#"` buttons in
-   `landing/index.html` (and `docs/index.html`, kept in sync) for real checkout links.
-3. Work the LAUNCH.md day 1/3/7 sequence once pricing is live.
+2. Wait for Lemon Squeezy store approval, then confirm a real Test-mode checkout completes
+   end to end (license key issued, `license.py` validates it).
+3. Flip `UNDELETED_LICENSE_REQUIRED=1` only on the distributed/packaged build, never the
+   personal repo default, once ready to actually gate for paying customers.
+4. Work the LAUNCH.md day 1/3/7 sequence once store approval lands.
 
 Full step-by-step in the "UnDeleted: Ship Runbook" artifact — Phases 1, 2, 4, 5(partial: env
 vars set, GitHub Pages done) are closed. Phase 3 (Lemon Squeezy) and 7 (launch) remain.
