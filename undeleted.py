@@ -73,6 +73,10 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
 
     monitor.ping_healthchecks(status="success")
     print(f"Snapshot ({source}): {len(tasks)} tasks" + (f", committed {sha[:8]}" if sha else " (no change)"))
+    if tasks:
+        label_field = restore._LABEL_FIELD[source]
+        sample = [t.get(label_field, "?") for t in tasks[:3]]
+        print("  captured, e.g.: " + "; ".join(sample) + (f" ... and {len(tasks) - 3} more" if len(tasks) > 3 else ""))
     return 0
 
 
