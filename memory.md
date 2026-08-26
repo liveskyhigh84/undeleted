@@ -82,13 +82,60 @@ works and is tested.
 - Both checkout links wired into `landing/index.html` and `docs/index.html` (kept in sync),
   replacing the `href="#"` placeholders. Pushed.
 
-## Next actions
-1. Same live test for Asana once a token exists.
-2. Wait for Lemon Squeezy store approval, then confirm a real Test-mode checkout completes
-   end to end (license key issued, `license.py` validates it).
-3. Flip `UNDELETED_LICENSE_REQUIRED=1` only on the distributed/packaged build, never the
-   personal repo default, once ready to actually gate for paying customers.
-4. Work the LAUNCH.md day 1/3/7 sequence once store approval lands.
+## Status (26 Aug 2026, session 5 — Lemon Squeezy approved, full test pass, 2 critical bugs found+fixed)
+- **Lemon Squeezy account approved** (23 Aug email from Lasya). Store live, both products
+  ("UnDeleted" $29 lifetime, "UnDeleted — Annual" $19/yr) confirmed real via a live checkout
+  page load — correct name/price/description, Test mode banner showing.
+- **CRITICAL BUG #1 (found + fixed)**: the last commit of session 4 (`e4cac4d`, "stop tracking
+  snapshots/ in the product repo") added `snapshots/` to `.gitignore`. `storage.commit_snapshot()`
+  does a plain `git add`, which silently no-ops on an ignored path. Result: every snapshot since
+  21 Aug wrote to disk but was **never committed** — `restore` broken ("exists on disk but not
+  in HEAD"), staleness/deletion-alert diffing broken, and the README's own "recommended" GitHub
+  Actions cron path broken (5 straight failed runs on the real repo). This was the product's
+  entire core mechanism, dead, for 5 days, unnoticed only because Leon's live Todoist list is
+  empty. Fixed: removed `snapshots/` from `.gitignore` (commit `572f903`). Verified with a real
+  simulated-deletion test (write 3-task snapshot, commit, write 2-task snapshot, commit, restore
+  dry-run against the prior commit — correctly listed the missing task).
+- **CRITICAL BUG #2 (found + fixed)**: even after bug #1's fix, the `snapshot.yml` CI cron still
+  failed — `git push` returned 403 ("Permission to .../undeleted.git denied to
+  github-actions[bot]"). The job had no `permissions: contents: write` block (same class of gap
+  `release.yml` already hit once in session 4). Fixed (commit `19e7501`), then verified with a
+  real `workflow_dispatch` run — all steps green, snapshot actually committed and pushed by CI.
+- **Asana live-tested for the first time** — closes the one gap flagged since session 2.
+  `undeleted snapshot --source asana` and `restore --source asana --commit HEAD` both work
+  against Leon's real 2-task Asana account.
+- **ClickUp still not live-tested** — no `CLICKUP_API_TOKEN` / Keychain entry available this
+  session. 5 unit tests pass (mocked), but the real ClickUp API has never been hit.
+- **Local dev environment was broken** — no `.venv` existed, so `pytest` silently collected 0
+  tests ("No tests collected", no error surfaced). Rebuilt `.venv`, installed
+  `requirements-dev.txt`; full suite now 25/25 passing, `ruff` clean.
+- **Frozen binary rebuilt and smoke-tested**: `pyinstaller` build succeeds, `--help` works,
+  license gate correctly blocks `snapshot` with "License check failed" when no
+  `UNDELETED_LICENSE_KEY` is set (buyers-without-a-key path confirmed correct).
+- **Real Lemon Squeezy Test-mode checkout attempted via browser automation, not completed** —
+  the payment iframe re-renders/loses field state on every validation pass (email field got
+  clobbered twice, a "Save info for faster checkout" Link flow appeared demanding a phone
+  number, coordinates kept drifting). Burned several turns fighting it; stopped rather than
+  keep retrying, handed it back to Leon to do manually instead.
+- **Real license key validated (26 Aug, follow-up)** — Leon completed the Test-mode purchase
+  himself (order #4564481, $29, key `43690A75-08D8-44A8-8925-858BE80326E2`). Ran
+  `UNDELETED_LICENSE_KEY=<key> ./dist/undeleted-bin snapshot --source todoist` — accepted
+  cleanly, `Snapshot (todoist): 0 tasks, committed 3dbb8e65`, exit 0. **The full purchase →
+  license → gate-unlock path is now confirmed end to end, real key, not mocked.** This closes
+  the last blocking item.
+- **ClickUp live-tested (26 Aug, follow-up)** — Leon added a real `CLICKUP_API_TOKEN`. Ran
+  `./undeleted.py snapshot --source clickup` — `Snapshot (clickup): 6 tasks, committed
+  53d78ede`. Ran `./undeleted.py restore --source clickup --commit HEAD` — `Nothing missing
+  compared to HEAD — 6 tasks match.` Both exit 0 against a real workspace. **Every source
+  (Todoist, Asana, ClickUp) is now live-tested. No open technical items remain.**
 
-Full step-by-step in the "UnDeleted: Ship Runbook" artifact — Phases 1, 2, 4, 5(partial: env
-vars set, GitHub Pages done) are closed. Phase 3 (Lemon Squeezy) and 7 (launch) remain.
+## Status: ready to launch
+All engineering blockers closed. 25/25 tests passing, ruff clean, CI cron confirmed green,
+all three task-manager sources live-tested, real Lemon Squeezy purchase → license key →
+gate-unlock confirmed end to end. Nothing left but `LAUNCH.md`'s day 1/3/7 distribution
+sequence — see that file for the full plan (Show HN + r/todoist day 1, forum replies +
+directory submissions day 3, `awesome-cli-apps` PR + SEO post day 7).
+
+Full step-by-step in the "UnDeleted: Ship Runbook" artifact and the "UnDeleted Launch Runbook"
+published artifact. Phases 1–6 closed. Phase 7 (launch) is the only thing left, and it's a
+distribution task, not a technical one.
