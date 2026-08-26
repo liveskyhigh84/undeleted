@@ -1,0 +1,608 @@
+[
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757617751",
+    "date_done": null,
+    "date_updated": "1787757617977",
+    "dependencies": [],
+    "description": "Ready to unlock a new level of productivity? Meet ClickUp AI \u2013 your intelligent co-pilot, seamlessly integrated into your workspace to help you write, summarize, brainstorm, get instant answers, and even take meeting notes right where you need them.\n\u00a0\nClickUp AI learns from your workspace, providing contextual, relevant help across all your tasks, Docs, and conversations. It's truly one AI to replace them all, saving you countless hours!\nHere\u2019s what to do:\n\u00a0\nWrite smarter, faster:\nClick anywhere in the description of this task (or any task where you're typing).\nLook for the AI button in the text editor toolbar (it appears when you highlight text or start a new line).\nSelect some text, click the AI button (It should look something like this: ), and try \"Improve Writing\" or \"Make shorter.\" Witness the instant transformation!\n\u00a0\nAsk anything, get answers instantly:\nIn the top right corner of your Workspace, next to your profile, you'll see an icon that looks something like this: . Click it to activate ClickUp Brain from anywhere in your Workspace.\nAsk a question like: \"What's the purpose of a ClickUp Space?\" or \"How do I add a Custom Field to a task?\" ClickUp AI will provide quick, contextual answers based on our knowledge base!\n\u00a0\nBrainstorm & generate ideas on demand:\nIn the comments section below, type a prompt like: \"ClickUp AI, give me 3 creative ideas for a team-building activity for remote teams.\"\nHighlight your prompt, click the AI button, and select \"Brainstorm\" or \"Generate Ideas.\" Get ready for fresh inspiration!\n\u00a0\nCreate Tasks with AI Magic:\nIn a new comment, type: \"ClickUp AI, create a task to [your next personal goal, e.g., 'plan my dream vacation'].\"\nHighlight the text, click the AI button, and choose \"Create Task\". Watch it transform your idea into an actionable item, complete with a title and description!\nWhy this matters:\n\u2705 Save time: Automate writing, editing, and task creation.\n\u2705 Work smarter: Get instant, contextual answers anywhere.\n\u2705 Keep moving: No switching tabs\u2014AI is built right in.",
+    "due_date": "1788103200000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdnb",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83e\udde0 Work Smarter with ClickUp AI",
+    "orderindex": "10001787757616.53332900000000500000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "Ready to unlock a new level of productivity? Meet ClickUp AI \u2013 your intelligent co-pilot, seamlessly integrated into your workspace to help you write, summarize, brainstorm, get instant answers, and even take meeting notes right where you need them.\n\u00a0\nClickUp AI learns from your workspace, providing contextual, relevant help across all your tasks, Docs, and conversations. It's truly one AI to replace them all, saving you countless hours!\nHere\u2019s what to do:\n\u00a0\nWrite smarter, faster:\nClick anywhere in the description of this task (or any task where you're typing).\nLook for the AI button in the text editor toolbar (it appears when you highlight text or start a new line).\nSelect some text, click the AI button (It should look something like this: ), and try \"Improve Writing\" or \"Make shorter.\" Witness the instant transformation!\n\u00a0\nAsk anything, get answers instantly:\nIn the top right corner of your Workspace, next to your profile, you'll see an icon that looks something like this: . Click it to activate ClickUp Brain from anywhere in your Workspace.\nAsk a question like: \"What's the purpose of a ClickUp Space?\" or \"How do I add a Custom Field to a task?\" ClickUp AI will provide quick, contextual answers based on our knowledge base!\n\u00a0\nBrainstorm & generate ideas on demand:\nIn the comments section below, type a prompt like: \"ClickUp AI, give me 3 creative ideas for a team-building activity for remote teams.\"\nHighlight your prompt, click the AI button, and select \"Brainstorm\" or \"Generate Ideas.\" Get ready for fresh inspiration!\n\u00a0\nCreate Tasks with AI Magic:\nIn a new comment, type: \"ClickUp AI, create a task to [your next personal goal, e.g., 'plan my dream vacation'].\"\nHighlight the text, click the AI button, and choose \"Create Task\". Watch it transform your idea into an actionable item, complete with a title and description!\nWhy this matters:\n\u2705 Save time: Automate writing, editing, and task creation.\n\u2705 Work smarter: Get instant, contextual answers anywhere.\n\u2705 Keep moving: No switching tabs\u2014AI is built right in.",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdnb",
+    "watchers": []
+  },
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757616950",
+    "date_done": null,
+    "date_updated": "1787757617498",
+    "dependencies": [],
+    "description": "You don\u2019t have to start from scratch in ClickUp. If you already have work tracked elsewhere, you can import tasks, documents, and chat channels in just a few steps and keep your projects moving.\nHere\u2019s what to do:\n\u00a0\nDecide what you want to bring into ClickUp\nImport tasks from spreadsheets, monday.com, Notion, Trello, and more.\nImport documents from local files, Notion, and Confluence.\nImport chat channels and invite users directly from Slack.\n\ud83d\udc49 Learn more about all the tools you can import from\nOpen ClickUp\u2019s import tools\nClick your Workspace avatar (top left) and go to Settings.\nIn the left sidebar, select Imports / Exports.\nIf you don\u2019t see Imports / Exports, you may need an admin to enable import permissions for you.\nSelect where you want to import from.\nFollow the guided import process\nClickUp will walk you through the import step by step.\nOnce it\u2019s done, your work will be in ClickUp so you can continue without a hitch.\nWhy this matters:\n\u2705 Move faster: Bring your existing work over instead of recreating it.\n\u2705 Preserve history: Keep your context and past activity.\n\u2705 Centralize data: Bring everything into one place in ClickUp.",
+    "due_date": "1787934000000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdmp",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83d\udce5 Import Your Work into ClickUp",
+    "orderindex": "10001787757616.53332900000000400000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "You don\u2019t have to start from scratch in ClickUp. If you already have work tracked elsewhere, you can import tasks, documents, and chat channels in just a few steps and keep your projects moving.\nHere\u2019s what to do:\n\u00a0\nDecide what you want to bring into ClickUp\nImport tasks from spreadsheets, monday.com, Notion, Trello, and more.\nImport documents from local files, Notion, and Confluence.\nImport chat channels and invite users directly from Slack.\n\ud83d\udc49 Learn more about all the tools you can import from\nOpen ClickUp\u2019s import tools\nClick your Workspace avatar (top left) and go to Settings.\nIn the left sidebar, select Imports / Exports.\nIf you don\u2019t see Imports / Exports, you may need an admin to enable import permissions for you.\nSelect where you want to import from.\nFollow the guided import process\nClickUp will walk you through the import step by step.\nOnce it\u2019s done, your work will be in ClickUp so you can continue without a hitch.\nWhy this matters:\n\u2705 Move faster: Bring your existing work over instead of recreating it.\n\u2705 Preserve history: Keep your context and past activity.\n\u2705 Centralize data: Bring everything into one place in ClickUp.",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdmp",
+    "watchers": []
+  },
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757616949",
+    "date_done": null,
+    "date_updated": "1787757617528",
+    "dependencies": [],
+    "description": "ClickUp truly shines when you collaborate with your team! Supercharge your productivity with these simple steps to bring your colleagues into your workspace and start working together effortlessly.\nHere\u2019s what to do:\n\u00a0\nInvite a teammate (or two!):\nClick the \"Invite\" button in the bottom left hand side of your sidebar. Send an invite to at least one colleague. They'll instantly get access to your workspace and this task!\n\ud83d\udc49 How to invite your team to ClickUp\n\nMention a teammate in a comment:\nIn the comments section below, type \"@\" followed by your teammate's name (or your own if you're testing). This will send them a notification and draw their attention to your comment.\n\nAssign a comment as an action item:\nReply to your comment (or a new one), and click the \"Assign Comment\" icon (looks like a person with a checkmark) to turn it into an actionable item for yourself or a teammate.\n\u00a0\nShare this task:\nClick the \"Share\" button at the top right of this task. Explore the sharing options \u2013 you can share this task with external guests or get a public link!\n\ud83d\udc49 Learn more about public sharing\nWhy This Matters:\n\u2705 Unified Communication: Keep all project discussions in one place, linked to your work.\n\u2705 Clear Ownership: Assign comments and tasks to ensure nothing falls through the cracks.\n\u2705 Faster Feedback: Get quick responses and approvals from stakeholders.",
+    "due_date": "1787930400000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdmn",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83e\udd1d Bring Your Team Onboard in Minutes",
+    "orderindex": "10001787757616.53332900000000200000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "ClickUp truly shines when you collaborate with your team! Supercharge your productivity with these simple steps to bring your colleagues into your workspace and start working together effortlessly.\nHere\u2019s what to do:\n\u00a0\nInvite a teammate (or two!):\nClick the \"Invite\" button in the bottom left hand side of your sidebar. Send an invite to at least one colleague. They'll instantly get access to your workspace and this task!\n\ud83d\udc49 How to invite your team to ClickUp\n\nMention a teammate in a comment:\nIn the comments section below, type \"@\" followed by your teammate's name (or your own if you're testing). This will send them a notification and draw their attention to your comment.\n\nAssign a comment as an action item:\nReply to your comment (or a new one), and click the \"Assign Comment\" icon (looks like a person with a checkmark) to turn it into an actionable item for yourself or a teammate.\n\u00a0\nShare this task:\nClick the \"Share\" button at the top right of this task. Explore the sharing options \u2013 you can share this task with external guests or get a public link!\n\ud83d\udc49 Learn more about public sharing\nWhy This Matters:\n\u2705 Unified Communication: Keep all project discussions in one place, linked to your work.\n\u2705 Clear Ownership: Assign comments and tasks to ensure nothing falls through the cracks.\n\u2705 Faster Feedback: Get quick responses and approvals from stakeholders.",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdmn",
+    "watchers": []
+  },
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757616912",
+    "date_done": null,
+    "date_updated": "1787757617544",
+    "dependencies": [],
+    "description": "ClickUp integrates with thousands of your favorite apps, bringing all your work into one central hub. Ready to maximize your efficiency? Let\u2019s get started!\nHere\u2019s what to do:\n\u00a0\nSync Your Google Calendar\nKeep your tasks front and center by syncing ClickUp with your Google Calendar. Click the \"Planner\" with the calendar icon in your left sidebar and select the \"Google Calendar\" option to get started.\n\ud83d\udc49 Check out a full list of calendar apps you can sync with ClickUp\n\u00a0\nExplore Popular Integrations\nThink about a tool you use daily (e.g., Slack, Google Drive, Gmail, HubSpot). Click the Settings (\u26ed) icon in your left sidebar, go to \"App Center\", and search for your favorite app.\n\ud83d\udc49 Learn how to connect all your apps in one place\n\u00a0\nAutomate Your Workflow\nImagine tasks moving statuses automatically or emails being sent when a task is completed. While we won't set one up now, explore the Automations section (click the\u26a1\ufe0f icon at the top of a List or Space).\n\ud83d\udc49 Get a quick intro to Automations in ClickUp\n\u00a0\nBrainstorm in Docs\nHead to your Docs (access it from your sidebar\u2014you might have to click the \"More\" option to see it) and create a new Doc titled \"My Next Big Idea.\" Start jotting down thoughts, and convert text directly into tasks!\n\ud83d\udc49 How to use Docs in ClickUp.\nWhy this matters:\n\u2705 Centralized Work: Stop switching between apps and keep everything in ClickUp.\n\u2705 Automate Repetitive Tasks: Save time and focus on what matters most.\n\u2705 Seamless Workflow: Connect your calendar, email, and other tools for a unified experience.",
+    "due_date": "1788016800000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdmh",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83d\udd17 Integrate Your Favorite Tools in ClickUp",
+    "orderindex": "10001787757616.53332900000000300000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "ClickUp integrates with thousands of your favorite apps, bringing all your work into one central hub. Ready to maximize your efficiency? Let\u2019s get started!\nHere\u2019s what to do:\n\u00a0\nSync Your Google Calendar\nKeep your tasks front and center by syncing ClickUp with your Google Calendar. Click the \"Planner\" with the calendar icon in your left sidebar and select the \"Google Calendar\" option to get started.\n\ud83d\udc49 Check out a full list of calendar apps you can sync with ClickUp\n\u00a0\nExplore Popular Integrations\nThink about a tool you use daily (e.g., Slack, Google Drive, Gmail, HubSpot). Click the Settings (\u26ed) icon in your left sidebar, go to \"App Center\", and search for your favorite app.\n\ud83d\udc49 Learn how to connect all your apps in one place\n\u00a0\nAutomate Your Workflow\nImagine tasks moving statuses automatically or emails being sent when a task is completed. While we won't set one up now, explore the Automations section (click the\u26a1\ufe0f icon at the top of a List or Space).\n\ud83d\udc49 Get a quick intro to Automations in ClickUp\n\u00a0\nBrainstorm in Docs\nHead to your Docs (access it from your sidebar\u2014you might have to click the \"More\" option to see it) and create a new Doc titled \"My Next Big Idea.\" Start jotting down thoughts, and convert text directly into tasks!\n\ud83d\udc49 How to use Docs in ClickUp.\nWhy this matters:\n\u2705 Centralized Work: Stop switching between apps and keep everything in ClickUp.\n\u2705 Automate Repetitive Tasks: Save time and focus on what matters most.\n\u2705 Seamless Workflow: Connect your calendar, email, and other tools for a unified experience.",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdmh",
+    "watchers": []
+  },
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757616907",
+    "date_done": null,
+    "date_updated": "1787757617493",
+    "dependencies": [],
+    "description": "ClickUp\u2019s flexibility lets you to create a Workspace that fits your unique workflow. Ready to customize your experience? Follow these simple steps to unlock the full potential of ClickUp:\nHere\u2019s what to do:\n\u00a0\nPersonalize your statuses\nEvery List in ClickUp comes with customizable statuses. Click the current status of this task, then select the Settings icon (\u2699\ufe0e) to make changes. Add a new status like \"Awaiting Review\" or \"Ready for Launch\" to track your process.\n\ud83d\udc49 Learn more about ClickUp statuses\n\nAdd a Custom Field\nTrack the details that matter most with Custom Fields. For this task, scroll down to the \"Add fields\" button and click the \"+\" icon. Add a \"Text\" Custom Field named \"Project Lead\" and enter your name.\n\ud83d\udc49 All about Custom Fields\n\nSwitch views\nSee your tasks your way! Exit this task, click the \"List\" view at the top of your screen and switch to \"Board\" or \"Calendar\" view for a fresh perspective.\n\ud83d\udc49 Explore all ClickUp views \n\nCreate a New List\nOrganize your work by creating a new List. Exit this task, hover over your current Space or Folder in the left sidebar, click the \"+\" icon, and select \"New List.\" Name it something relevant, like \"My Projects\" or \"Marketing Campaigns.\"\n\nWhy this matters:\n\u2705 Adapt to your needs: ClickUp molds to your process, not the other way around.\n\u2705 Track anything: Custom Fields ensure you capture all the critical details.\n\u2705 Work your way: Different views help you see your tasks the way you think.",
+    "due_date": "1787844000000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdmg",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83c\udfa8 Design a Workflow That Works for You",
+    "orderindex": "10001787757616.53332900000000100000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "ClickUp\u2019s flexibility lets you to create a Workspace that fits your unique workflow. Ready to customize your experience? Follow these simple steps to unlock the full potential of ClickUp:\nHere\u2019s what to do:\n\u00a0\nPersonalize your statuses\nEvery List in ClickUp comes with customizable statuses. Click the current status of this task, then select the Settings icon (\u2699\ufe0e) to make changes. Add a new status like \"Awaiting Review\" or \"Ready for Launch\" to track your process.\n\ud83d\udc49 Learn more about ClickUp statuses\n\nAdd a Custom Field\nTrack the details that matter most with Custom Fields. For this task, scroll down to the \"Add fields\" button and click the \"+\" icon. Add a \"Text\" Custom Field named \"Project Lead\" and enter your name.\n\ud83d\udc49 All about Custom Fields\n\nSwitch views\nSee your tasks your way! Exit this task, click the \"List\" view at the top of your screen and switch to \"Board\" or \"Calendar\" view for a fresh perspective.\n\ud83d\udc49 Explore all ClickUp views \n\nCreate a New List\nOrganize your work by creating a new List. Exit this task, hover over your current Space or Folder in the left sidebar, click the \"+\" icon, and select \"New List.\" Name it something relevant, like \"My Projects\" or \"Marketing Campaigns.\"\n\nWhy this matters:\n\u2705 Adapt to your needs: ClickUp molds to your process, not the other way around.\n\u2705 Track anything: Custom Fields ensure you capture all the critical details.\n\u2705 Work your way: Different views help you see your tasks the way you think.",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdmg",
+    "watchers": []
+  },
+  {
+    "archived": false,
+    "assignees": [
+      {
+        "color": "#595d66",
+        "email": "liveskyhigh84@gmail.com",
+        "id": 234190735,
+        "initials": "LT",
+        "profilePicture": null,
+        "username": "Leon Thompson"
+      }
+    ],
+    "checklists": [],
+    "creator": {
+      "color": "#595d66",
+      "email": "liveskyhigh84@gmail.com",
+      "id": 234190735,
+      "profilePicture": null,
+      "username": "Leon Thompson"
+    },
+    "custom_fields": [],
+    "custom_id": null,
+    "custom_item_id": 0,
+    "date_closed": null,
+    "date_created": "1787757616904",
+    "date_done": null,
+    "date_updated": "1787757617484",
+    "dependencies": [],
+    "description": "We're thrilled to have you here. This quick-start task will help you set up your Workspace for maximum productivity\u2014fast. Let\u2019s get started!\nHere's what to do:\n\u00a0\nMeet your first task:\nYou're looking at it right now. Notice the due date (that\u2019s tomorrow!), assignee (that\u2019s you!), and priority (we\u2019ve set this one as \"High\" to get you going!).\n\u00a0\nUpdate your status:\nSee the \"To Do\" status at the top? Click it and change it to \"In Progress\" to keep everyone (including you!) updated on your work.\n\u00a0\nAdd a subtask:\nBreak down big tasks into smaller, manageable steps. Click the \"Subtask\" tab below this task description, click \"+ Add Task\" and name it \"Learn about my Inbox\".\n\u00a0\nMark this task complete!\nWhen you\u2019ve done the above, change the statuses of this task and the subtask you created to \"Complete\". You\u2019ll feel a tiny rush of productivity!\nWhy this matters:\n\u2705 Stay organized: Keep track of what needs to be done and by when.\n\u2705 Gain clarity: See exactly what\u2019s expected of you.\n\u2705 Boost focus: Break down big goals into actionable steps.\n\u00a0\n\u00a0\nFor a bit more on tasks, check out this quick video walkthrough:",
+    "due_date": "1787757600000",
+    "folder": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "group_assignees": [],
+    "id": "86bbmwdmf",
+    "linked_tasks": [],
+    "list": {
+      "access": true,
+      "id": "901419567843",
+      "name": "Get Started with ClickUp"
+    },
+    "locations": [],
+    "name": "\ud83d\ude80 Set up Your Tasks in Just 5 Minutes",
+    "orderindex": "10001787757616.53332900000000000000000000000000",
+    "parent": null,
+    "permission_level": "create",
+    "points": null,
+    "priority": {
+      "color": "#f8ae00",
+      "id": "2",
+      "orderindex": "2",
+      "priority": "high"
+    },
+    "project": {
+      "access": true,
+      "hidden": true,
+      "id": "901411971225",
+      "name": "hidden"
+    },
+    "sharing": {
+      "public": false,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "activity",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "public_share_expires_on": null,
+      "seo_optimized": false,
+      "token": null
+    },
+    "space": {
+      "id": "90147383436"
+    },
+    "start_date": null,
+    "status": {
+      "color": "#87909e",
+      "id": "sc901419567843_DCnaeiSB",
+      "orderindex": 0,
+      "status": "to do",
+      "type": "open"
+    },
+    "tags": [],
+    "team_id": "90141570179",
+    "text_content": "We're thrilled to have you here. This quick-start task will help you set up your Workspace for maximum productivity\u2014fast. Let\u2019s get started!\nHere's what to do:\n\u00a0\nMeet your first task:\nYou're looking at it right now. Notice the due date (that\u2019s tomorrow!), assignee (that\u2019s you!), and priority (we\u2019ve set this one as \"High\" to get you going!).\n\u00a0\nUpdate your status:\nSee the \"To Do\" status at the top? Click it and change it to \"In Progress\" to keep everyone (including you!) updated on your work.\n\u00a0\nAdd a subtask:\nBreak down big tasks into smaller, manageable steps. Click the \"Subtask\" tab below this task description, click \"+ Add Task\" and name it \"Learn about my Inbox\".\n\u00a0\nMark this task complete!\nWhen you\u2019ve done the above, change the statuses of this task and the subtask you created to \"Complete\". You\u2019ll feel a tiny rush of productivity!\nWhy this matters:\n\u2705 Stay organized: Keep track of what needs to be done and by when.\n\u2705 Gain clarity: See exactly what\u2019s expected of you.\n\u2705 Boost focus: Break down big goals into actionable steps.\n\u00a0\n\u00a0\nFor a bit more on tasks, check out this quick video walkthrough:",
+    "time_estimate": null,
+    "top_level_parent": null,
+    "url": "https://app.clickup.com/t/86bbmwdmf",
+    "watchers": []
+  }
+]
