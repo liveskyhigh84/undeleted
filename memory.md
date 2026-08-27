@@ -139,3 +139,49 @@ directory submissions day 3, `awesome-cli-apps` PR + SEO post day 7).
 Full step-by-step in the "UnDeleted: Ship Runbook" artifact and the "UnDeleted Launch Runbook"
 published artifact. Phases 1–6 closed. Phase 7 (launch) is the only thing left, and it's a
 distribution task, not a technical one.
+
+## Status (26 Aug, session 6 — store actually live, LICENSE added, r/todoist ruled out)
+- **Store is genuinely live now.** Session 5's "ready to launch" was wrong on one count: the
+  checkout was still in Test mode days after Lemon Squeezy's approval — confirmed directly on
+  the live checkout page. Fixed for real this session: activated live mode, used "Copy to Live
+  Mode" on both products (test-mode products don't carry over automatically), and updated the
+  checkout links — copying to live mode issues **new product IDs**, so the old test-mode links
+  in `landing/index.html`/`docs/index.html` would only ever have processed test payments.
+  New live links: lifetime `ad95782f-6f4d-4b1a-ae4c-a00b756b68d0`, annual
+  `e1638e88-7d20-4ce9-baff-94f824461a7c`. Verified both directly (no "Test mode" banner) and
+  confirmed GitHub Pages is serving the updated links. **This is the real remaining blocker
+  from every prior session closed.**
+- **MIT LICENSE added.** Repo had none — GitHub defaults to all-rights-reserved, so "open
+  source, audit it yourself" on the landing page wasn't actually true, and `awesome-cli-apps`
+  (which requires a free/OSS license) would have rejected the PR outright. Confirmed GitHub now
+  detects it (`licenseInfo.key: "mit"`).
+- **GitHub star/watch CTA shipped** (session 5's plan, actually built this time) — added to
+  README and landing page trust-strip as the zero-setup interest signal, since a real
+  email-capture form would have needed a new third-party account nobody had set up.
+- **r/todoist is ruled out as a self-promo channel — checked the actual current rules, not
+  assumed.** Rule 3: "No AI generated comments" — explicit permanent-ban risk, moderator
+  discretion. Rule 7: "No self-promotion," flat, no disclosed-founder carve-out visible. The
+  drafted Show HN/r/todoist copy is AI-written and is a founder pitching their own paid
+  product — posting it as drafted would risk a permanent ban, not just a removed post. Did not
+  post; backed out of the submit form with nothing typed in.
+- **Found a real, current, on-topic thread while checking r/todoist**: "Will we ever get a real
+  backup / restore / export?" (r/todoist, 10 days old, `Spirited-Bridge8405`, Todoist Pro
+  subscriber, frustrated about a broken search-index bug Todoist support escalated and never
+  fixed). One reply in that thread ("build your own backup with the API in 10 minutes if
+  you're using Claude already") is a live, real-world instance of the exact free-DIY
+  competitive threat the brutal review flagged. Good candidate for the LAUNCH.md day-7 "DM
+  people who publicly complained" tactic — direct outreach, not a self-promo post, sidesteps
+  rule 7.
+- **Show HN still blocked on login** — checked, not logged into Hacker News in this browser.
+  Same as Lemon Squeezy: needs Leon's own login, can't be done for him.
+
+## Next actions
+1. Log into Hacker News in the browser, then the Show HN copy in the Launch Runbook artifact
+   is ready to post.
+2. Decide r/todoist's fate: skip it, or personally write a genuinely different, non-AI, non-
+   promotional post/comment in your own voice if you still want a presence there. The drafted
+   copy is not safe to post as-is.
+3. Consider a direct, personal (non-copy-paste) reply or DM to `Spirited-Bridge8405` on the
+   backup/restore thread found above — real, current, on-topic pain, and outreach sidesteps
+   the self-promotion rule a fresh post would trip.
+4. Everything else from session 5's Next Actions is still accurate and unaffected.
