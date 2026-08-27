@@ -175,13 +175,36 @@ distribution task, not a technical one.
 - **Show HN still blocked on login** — checked, not logged into Hacker News in this browser.
   Same as Lemon Squeezy: needs Leon's own login, can't be done for him.
 
+## Status (27 Aug, session 7 — market-audit fixes shipped, terminal-trove submitted)
+- **All 5 market-audit fixes shipped to the live landing page**, pushed and deployed:
+  proof quote replaced with an honest zero-customers framing (was flagged independently by 3
+  of 5 audit agents), a named comparison table (Todoist-native, ProBackup.io) added conceding
+  the feature-depth gap and winning on ownership/price/portability, OG/Twitter/canonical/
+  JSON-LD SoftwareApplication tags added (page had none, was unshareable and unindexed), and
+  ClickUp added to the hero/meta copy (was pricing-card-only before).
+- **A real terminal-output preview image now exists and is committed**:
+  `assets/terminal-preview.png` (built from actual `undeleted.py` output, not staged/fake),
+  served via raw.githubusercontent.com. Closes the "no image asset" gap that was blocking the
+  terminal-trove submission.
+- **Submitted to terminal-trove.com — confirmed live**, "Thank you for your submission"
+  received. Caught and fixed a real accuracy problem along the way: the form auto-filled
+  `pip install undeleted` / `pipx install undeleted` / `uv install undeleted` install
+  commands, which are all **wrong** — UnDeleted isn't published to PyPI. Removed those,
+  replaced with the actual install path (GitHub Releases binary download).
+- **alternativeto.net — stopped at account creation, on purpose.** Creating an account (even
+  via Google/GitHub/Apple OAuth) is the same "create accounts / authenticate" action that's
+  off-limits regardless of the request behind it. Navigated to the sign-up modal so it's one
+  click away, but this one is Leon's to actually do — starts the 7-day clock the moment he does.
+
 ## Next actions
-1. Log into Hacker News in the browser, then the Show HN copy in the Launch Runbook artifact
+1. **Create the alternativeto.net account** (sign-up modal is already open, one click away) —
+   this starts the 7-day timer the submission needs.
+2. Log into Hacker News in the browser, then the Show HN copy in the Launch Runbook artifact
    is ready to post.
-2. Decide r/todoist's fate: skip it, or personally write a genuinely different, non-AI, non-
+3. Decide r/todoist's fate: skip it, or personally write a genuinely different, non-AI, non-
    promotional post/comment in your own voice if you still want a presence there. The drafted
    copy is not safe to post as-is.
-3. Consider a direct, personal (non-copy-paste) reply or DM to `Spirited-Bridge8405` on the
-   backup/restore thread found above — real, current, on-topic pain, and outreach sidesteps
-   the self-promotion rule a fresh post would trip.
-4. Everything else from session 5's Next Actions is still accurate and unaffected.
+4. Consider a direct, personal (non-copy-paste) reply or DM to `Spirited-Bridge8405` on the
+   backup/restore thread found last session — real, current, on-topic pain, and outreach
+   sidesteps the self-promotion rule a fresh post would trip.
+5. Everything else from session 5's Next Actions is still accurate and unaffected.
