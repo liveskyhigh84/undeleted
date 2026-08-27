@@ -4,7 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UnDeleted: Get your lost tasks back in 30 seconds</title>
-<meta name="description" content="Todoist and Asana silently lose tasks after updates. UnDeleted backs them up automatically and restores what's missing, without ever seeing your data.">
+<meta name="description" content="Todoist, Asana, and ClickUp silently lose tasks after updates. UnDeleted backs them up automatically and restores what's missing, without ever seeing your data.">
+<link rel="canonical" href="https://liveskyhigh84.github.io/undeleted/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://liveskyhigh84.github.io/undeleted/">
+<meta property="og:title" content="UnDeleted: Get your lost tasks back in 30 seconds">
+<meta property="og:description" content="Todoist, Asana, and ClickUp silently lose tasks after updates. UnDeleted backs them up automatically and restores what's missing, without ever seeing your data.">
+<meta property="og:site_name" content="UnDeleted">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UnDeleted: Get your lost tasks back in 30 seconds">
+<meta name="twitter:description" content="Todoist, Asana, and ClickUp silently lose tasks after updates. UnDeleted backs them up automatically and restores what's missing, without ever seeing your data.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UnDeleted",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "macOS, Linux, Windows",
+  "url": "https://liveskyhigh84.github.io/undeleted/",
+  "description": "Backup, diff, and restore for Todoist, Asana, and ClickUp. Git-versioned snapshots, bring-your-own API token, never touches your data.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Lifetime license",
+      "price": "29.00",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Annual license",
+      "price": "19.00",
+      "priceCurrency": "USD"
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --ground: #0B1416; --surface: #111C1F; --surface-2: #162326;
@@ -106,6 +140,19 @@
   footer { padding: 2.6rem 0 3rem; }
   footer p { font-size: 0.78rem; color: var(--ink-faint); margin: 0 0 0.5rem; max-width: 64ch; }
 
+  /* Comparison table */
+  .compare-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--rule); }
+  table.compare { width: 100%; border-collapse: collapse; font-size: 0.9rem; background: var(--surface); }
+  table.compare th, table.compare td { padding: 0.9rem 1.1rem; text-align: left; border-bottom: 1px solid var(--rule); }
+  table.compare th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); font-weight: 700; background: var(--surface-2); }
+  table.compare td.row-label { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  table.compare td, table.compare th { color: var(--ink-muted); }
+  table.compare tr:last-child td { border-bottom: none; }
+  table.compare th.us, table.compare td.us { background: rgba(111,214,196,0.06); color: var(--ink); }
+  table.compare .yes { color: var(--good); font-weight: 700; }
+  table.compare .no { color: var(--ink-faint); }
+  .compare-note { margin-top: 1rem; font-size: 0.86rem; color: var(--ink-faint); max-width: 62ch; }
+
   @media (max-width: 720px) {
     .steps, .pricing-grid { grid-template-columns: 1fr; }
   }
@@ -124,7 +171,7 @@
   <div class="wrap hero-inner">
     <span class="eyebrow">⚠ Real, documented data-loss pattern</span>
     <h1>Todoist just lost your tasks again. Get them back <em>in 30 seconds.</em></h1>
-    <p class="lede">A backup and restore layer for Todoist and Asana. Runs on your machine, uses your own API token, and never sends your task data anywhere. Git does the version history. You just get your tasks back.</p>
+    <p class="lede">A backup and restore layer for Todoist, Asana, and ClickUp. Runs on your machine, uses your own API token, and never sends your task data anywhere. Git does the version history. You just get your tasks back.</p>
     <div class="cta-row">
       <a class="btn-primary" href="#pricing">Get lifetime access, $29</a>
       <a class="btn-secondary" href="#how">See how it works ↓</a>
@@ -155,9 +202,58 @@
   <div class="wrap">
     <div class="section-eyebrow">Why this exists</div>
     <div class="proof">
-      <blockquote>"An update deleted years of tasks. This isn't a one-off complaint: it's a recurring pattern across independent reviews on both Todoist and Asana's own support forums."</blockquote>
-      <cite>From the review analysis that led to building this (full writeup in the repo)</cite>
+      <blockquote>An update deleted years of my own tasks. That's the actual origin, not a formal study. This is brand new &mdash; zero customers as of this week, and I'm not going to pretend otherwise.</blockquote>
+      <cite>Don't take my word for it: clone the repo, run a snapshot against your real account, and you'll see in your terminal exactly what it captured &mdash; before you ever pay for anything.</cite>
     </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="section-eyebrow">How this compares</div>
+    <h2>The other options, honestly.</h2>
+    <p class="section-lede">Todoist already gives paying subscribers a native backup. A funded SaaS already does this deeper for two of these three platforms. Here's where each one actually stands.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <tr>
+          <th>&nbsp;</th>
+          <th>Todoist native</th>
+          <th>ProBackup.io</th>
+          <th class="us">UnDeleted</th>
+        </tr>
+        <tr>
+          <td class="row-label">Platforms</td>
+          <td>Todoist only</td>
+          <td>Asana, ClickUp (not Todoist)</td>
+          <td class="us">Todoist, Asana, ClickUp</td>
+        </tr>
+        <tr>
+          <td class="row-label">Cost</td>
+          <td>Free, but only on Pro/Business</td>
+          <td>$25&ndash;70/month</td>
+          <td class="us">$29 once, or $19/yr</td>
+        </tr>
+        <tr>
+          <td class="row-label">Where your backup lives</td>
+          <td>Inside Todoist's own system</td>
+          <td>Their hosted dashboard</td>
+          <td class="us">A git repo you own</td>
+        </tr>
+        <tr>
+          <td class="row-label">Comments, custom fields, attachments</td>
+          <td><span class="no">&mdash;</span></td>
+          <td><span class="yes">Yes</span></td>
+          <td class="us"><span class="no">Not yet</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">Stop paying, keep your history?</td>
+          <td>N/A</td>
+          <td><span class="no">No &mdash; access ends</span></td>
+          <td class="us"><span class="yes">Yes, it's already yours</span></td>
+        </tr>
+      </table>
+    </div>
+    <p class="compare-note">Honest tradeoff: ProBackup captures more detail per task today. What it doesn't do is let you keep that history if you ever stop paying. UnDeleted captures less, once, and you own it forever.</p>
   </div>
 </section>
 
