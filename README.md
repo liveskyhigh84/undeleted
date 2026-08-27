@@ -3,6 +3,10 @@
 Backup/diff/restore safety net for Todoist and Asana. Git is the version-history engine —
 no custom diff code. Not a replacement app; runs alongside the tool you already use.
 
+Running from source is free, always. If that's what you're doing, ⭐ star or watch this repo —
+it's how you'll hear about new integrations and fixes, and it's the only way I'll know anyone's
+actually using this.
+
 > UnDeleted is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.
 
 ## Setup
