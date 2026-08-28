@@ -196,15 +196,35 @@ distribution task, not a technical one.
   off-limits regardless of the request behind it. Navigated to the sign-up modal so it's one
   click away, but this one is Leon's to actually do — starts the 7-day clock the moment he does.
 
+## Status (28 Aug, session 8 — HN Show HN blocked, Reddit DM sent)
+- **alternativeto.net account created** (28 Aug) — 7-day clock running, eligible ~4 Sept.
+  Email still needs verifying (banner live, Leon's own inbox, not something I can do).
+- **Show HN is blocked, not just "not logged in" anymore.** Leon logged in and attempted to
+  submit; HN's own automated response says Show HN is "temporarily restricted... because of a
+  massive influx" of unfamiliar accounts, and pointed to the newsguidelines/newswelcome/showhn
+  pages. Confirmed via `news.ycombinator.com/submitted?id=liveskyhigh84` — **zero submissions
+  exist**, so the post never actually got created. There's nothing to add a first-comment to.
+  Real next step per HN's own guidance: participate normally (comments, upvotes, maybe a
+  non-Show-HN link) for a while first, then retry Show HN later. Not a same-session fix.
+- **Fixed a real inconsistency in the drafted HN/Reddit copy before anything got used**: both
+  the Show HN body and the r/todoist body still had the old unsourced "recurring pattern" /
+  "dozens of threads" claims that were already replaced on the live landing page (per the
+  market-audit fixes, session 7). Rewrote both to match the honest zero-customers framing now
+  actually on the site — validated clean against ai-tells-validator after two revision passes
+  (first pass introduced a "not X, I just Y" contrast pattern, fixed). Runbook artifact
+  republished with the corrected copy.
+- **Sent the Reddit DM to `Spirited-Bridge8405`** (the real, current "Will we ever get a real
+  backup / restore / export?" thread author from session 6) — confirmed "Message sent" toast.
+  This was explicit, per-message user approval for this specific send, not a standing
+  authorization to message people generally.
+
 ## Next actions
-1. **Create the alternativeto.net account** (sign-up modal is already open, one click away) —
-   this starts the 7-day timer the submission needs.
-2. Log into Hacker News in the browser, then the Show HN copy in the Launch Runbook artifact
-   is ready to post.
-3. Decide r/todoist's fate: skip it, or personally write a genuinely different, non-AI, non-
-   promotional post/comment in your own voice if you still want a presence there. The drafted
-   copy is not safe to post as-is.
-4. Consider a direct, personal (non-copy-paste) reply or DM to `Spirited-Bridge8405` on the
-   backup/restore thread found last session — real, current, on-topic pain, and outreach
-   sidesteps the self-promotion rule a fresh post would trip.
+1. Verify email on alternativeto.net (Leon's inbox).
+2. Wait out the alternativeto.net 7-day account-age gate (~4 Sept), then submit.
+3. HN: no action available this session — read newsguidelines.html/newswelcome.html, participate
+   normally for a while, retry Show HN later. Corrected copy is ready in the Launch Runbook
+   artifact whenever that day comes.
+4. r/todoist: still open — skip it, or write a genuinely personal, non-AI, disclosed-founder
+   version if Leon wants a presence there. The corrected drafted copy is still AI-authored and
+   still not safe to post as a public submission (rule 3), even though it's now honest.
 5. Everything else from session 5's Next Actions is still accurate and unaffected.
