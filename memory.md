@@ -232,6 +232,26 @@ distribution task, not a technical one.
   mismatch. Run it any time with `./scripts/launch_status.py` (or `--notify` to ping ntfy only
   when the alternativeto.net gate has actually opened).
 
+## Status (28 Aug, session 10 — Asana + ClickUp automated backup wired, real gap closed)
+- **Found: only Todoist was ever actually automated**, despite session 5-6's CI fixes (gitignore,
+  push permission). Root cause: `undeleted.py snapshot` defaults `--source` to `todoist`, and
+  `.github/workflows/snapshot.yml`'s daily cron called it with no `--source` flag — so Asana and
+  ClickUp had zero automated protection since day one. Every non-Todoist snapshot that ever
+  existed was a manual run by hand. Founder's own dogfooding account had real Asana/ClickUp data
+  sitting unprotected the whole time this was believed fixed.
+- **Fixed.** Confirmed both tokens already live in local macOS Keychain (`security find-generic-
+  password`). Asked explicit permission before touching credentials/GH secrets (AskUserQuestion
+  — this crosses the "modifying persistent config" line) — approved. Piped Keychain values into
+  `gh secret set ASANA_ACCESS_TOKEN` / `CLICKUP_API_TOKEN` (worked around transient local network
+  flakiness, not an auth problem — confirmed via `gh secret list`). Extended the workflow to loop
+  `for source in todoist asana clickup` with `|| status=1` per-source (one bad token doesn't skip
+  the other two). Committed `808ea44`, pushed.
+- **Verified live, not just claimed**: triggered a real `workflow_dispatch` run (`33176096249`).
+  Log confirms all 3 sources actually ran with the new secrets: `Snapshot (todoist): 0 tasks (no
+  change)`, `Snapshot (asana): 2 tasks (no change)`, `Snapshot (clickup): 6 tasks (no change)` —
+  no commit made because nothing had changed since the last manual snapshot, which is correct
+  behavior, not a failure. All 3 sources are now genuinely covered by the daily 9am UTC cron.
+
 ## Next actions
 1. Verify email on alternativeto.net (Leon's inbox).
 2. Wait out the alternativeto.net 7-day account-age gate (~4 Sept) — `scripts/launch_status.py`
@@ -241,4 +261,6 @@ distribution task, not a technical one.
    whenever that day comes. `scripts/launch_status.py` shows current HN account age/karma as a
    read-only reference point, not a go/no-go signal (HN doesn't publish one).
 4. r/todoist: closed, skipped.
-5. Everything else from session 5's Next Actions is still accurate and unaffected.
+5. Backup automation itself is now genuinely done for all 3 sources — no further action needed
+   there barring a token expiring (ntfy/healthchecks alert would fire; see below).
+6. Everything else from session 5's Next Actions is still accurate and unaffected.
