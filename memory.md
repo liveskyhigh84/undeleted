@@ -218,13 +218,27 @@ distribution task, not a technical one.
   This was explicit, per-message user approval for this specific send, not a standing
   authorization to message people generally.
 
+## Status (28 Aug, session 9 — r/todoist skipped, launch_status.py shipped)
+- **r/todoist: closed, by decision.** Leon chose skip over writing a personal version. Not
+  revisiting unless he raises it again.
+- **`scripts/launch_status.py` shipped** — a read-only launch-ops status checker, explicitly
+  scoped to NOT automate HN/Reddit participation (both platforms depend on genuine human
+  engagement; a bot faking that risks the account and defeats the purpose — this was a
+  deliberate refusal, not an oversight). What it does track: the alternativeto.net 7-day
+  account-age gate (pure date math) and HN account age/karma (public, unauthenticated
+  `hacker-news.firebaseio.com` API). Reuses the existing `undeleted/monitor.py` `notify()` ntfy
+  integration for `--notify`. Maintainer-only, not part of the shipped CLI/binary. Code-reviewed
+  before commit — caught and fixed a real crash-on-null-username bug, and a UTC/local date
+  mismatch. Run it any time with `./scripts/launch_status.py` (or `--notify` to ping ntfy only
+  when the alternativeto.net gate has actually opened).
+
 ## Next actions
 1. Verify email on alternativeto.net (Leon's inbox).
-2. Wait out the alternativeto.net 7-day account-age gate (~4 Sept), then submit.
-3. HN: no action available this session — read newsguidelines.html/newswelcome.html, participate
-   normally for a while, retry Show HN later. Corrected copy is ready in the Launch Runbook
-   artifact whenever that day comes.
-4. r/todoist: still open — skip it, or write a genuinely personal, non-AI, disclosed-founder
-   version if Leon wants a presence there. The corrected drafted copy is still AI-authored and
-   still not safe to post as a public submission (rule 3), even though it's now honest.
+2. Wait out the alternativeto.net 7-day account-age gate (~4 Sept) — `scripts/launch_status.py`
+   tracks this now, no need to count manually.
+3. HN: no action available yet — read newsguidelines.html/newswelcome.html, participate normally
+   for a while, retry Show HN later. Corrected copy is ready in the Launch Runbook artifact
+   whenever that day comes. `scripts/launch_status.py` shows current HN account age/karma as a
+   read-only reference point, not a go/no-go signal (HN doesn't publish one).
+4. r/todoist: closed, skipped.
 5. Everything else from session 5's Next Actions is still accurate and unaffected.
