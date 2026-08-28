@@ -19,12 +19,19 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Run snapshot
+      - name: Run snapshots
         env:
           TODOIST_API_TOKEN: ${{ secrets.TODOIST_API_TOKEN }}
+          ASANA_ACCESS_TOKEN: ${{ secrets.ASANA_ACCESS_TOKEN }}
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
           HEALTHCHECKS_URL: ${{ secrets.HEALTHCHECKS_URL }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python undeleted.py snapshot
+        run: |
+          status=0
+          for source in todoist asana clickup; do
+            python undeleted.py snapshot --source "$source" || status=1
+          done
+          exit $status
 
       - name: Commit and push snapshot
         run: |
