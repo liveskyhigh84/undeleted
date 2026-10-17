@@ -60,8 +60,14 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
         print(f"Error: {e}", file=sys.stderr)
         return 1
 
-    storage.write_snapshot(source, tasks)
-    sha = storage.commit_snapshot(source, len(tasks))
+    try:
+        storage.write_snapshot(source, tasks)
+        sha = storage.commit_snapshot(source, len(tasks))
+    except storage.StorageError as e:
+        monitor.ping_healthchecks(status="fail")
+        monitor.notify(f"UnDeleted: {source} snapshot NOT recorded — {e}")
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
 
     if before is not None and before > 0:
         drop = (before - len(tasks)) / before

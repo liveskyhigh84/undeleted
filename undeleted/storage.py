@@ -13,6 +13,10 @@ else:
     SNAPSHOTS_DIR = Path(__file__).resolve().parent.parent / "snapshots"
 
 
+class StorageError(RuntimeError):
+    """A snapshot could not be recorded in git. Never swallow this."""
+
+
 def _run_git(*args):
     return subprocess.run(["git", *args], cwd=SNAPSHOTS_DIR.parent, capture_output=True, text=True, check=False)
 
@@ -33,14 +37,17 @@ def write_snapshot(source, tasks):
 def commit_snapshot(source, count):
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     rel_path = f"snapshots/{source}.json"
-    _run_git("add", rel_path)
+    # -f: a snapshot must be recorded even if a .gitignore rule matches it.
+    add = _run_git("add", "-f", rel_path)
+    if add.returncode != 0:
+        raise StorageError(f"git add failed for {rel_path}: {add.stderr.strip()}")
     status = _run_git("status", "--porcelain", "--", rel_path)
     if not status.stdout.strip():
         return None
     message = f"snapshot: {source} {stamp} ({count} tasks)"
     result = _run_git("commit", "-m", message)
     if result.returncode != 0:
-        return None
+        raise StorageError(f"git commit failed for {rel_path}: {(result.stderr or result.stdout).strip()}")
     sha = _run_git("rev-parse", "HEAD").stdout.strip()
     return sha
 
