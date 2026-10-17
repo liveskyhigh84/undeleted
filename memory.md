@@ -286,3 +286,7 @@ distribution task, not a technical one.
   title `Add UnDeleted`, use their PR template.
 - GitHub repo description still says "Todoist and Asana" — omits ClickUp; fix in repo settings.
 - Tests: 25/25 passing.
+
+## 2026-10-17 audit fix (branch fix/audit-2026-10-17)
+- Added snapshot-commit regression tests (ignored path still commits, commit failure raises, repo .gitignore does not ignore snapshots/). storage.commit_snapshot now uses `git add -f` and raises StorageError on add/commit failure (previously returned None = looked like "no change"); CLI snapshot fails loudly + pings fail. 29 tests pass (was 25).
+- Lemon Squeezy test->live switch and payout setup still unconfirmed (human).
