@@ -1,0 +1,54 @@
+[div] UnDeleted
+[a] Get lifetime access
+[span] ⚠ Real, documented data-loss pattern
+[h1] Todoist just lost your tasks again. Get them back
+[em] in 30 seconds.
+[p] A backup and restore layer for Todoist and Asana. Runs on your machine, uses your own API token, and never sends your task data anywhere. Git does the version history. You just get your tasks back.
+[a] Get lifetime access, $29
+[a] See how it works ↓
+[span] Your token never leaves your machine
+[span] Open source, audit it yourself
+[span] Not affiliated with Doist or Asana, Inc.
+[div] How it works
+[h2] Three commands. No account, no server, no exceptions.
+[p] Every step runs locally or in your own free GitHub Actions job. Nothing routes through infrastructure anyone else operates.
+[h3] Connect your own token
+[p] Generate a personal API token from Todoist or Asana's own settings. It's stored in your Keychain, never sent to us, because there's no "us" in the data path.
+[h3] Automatic snapshots
+[p] A scheduled job pulls your task list and commits it to a git repo you control. Git's own history is the diff engine, nothing custom to trust.
+[h3] Restore what's missing
+[p] One command diffs any past snapshot against your live list and recreates exactly what disappeared. Never destructive, never overwrites.
+[div] Why this exists
+[blockquote] "An update deleted years of tasks. This isn't a one-off complaint: it's a recurring pattern across independent reviews on both Todoist and Asana's own support forums."
+[cite] From the review analysis that led to building this (full writeup in the repo)
+[div] Pricing
+[h2] Pay once. Own it forever.
+[p] No subscription for a tool you hope to rarely need. Buy it, forget it, and it's there the one time it matters.
+[span] Best value
+[h3] Lifetime license
+[div] $29
+[span] one-time
+[li] Todoist + Asana backup & restore
+[li] Unlimited snapshots, unlimited restores
+[li] All future updates
+[li] Standalone binary, no Python required
+[a] Buy lifetime access
+[h3] Annual
+[div] $19
+[span] /yr
+[li] Everything in Lifetime
+[li] Lower upfront cost
+[li] Cancel anytime
+[a] Buy annual license
+[div] FAQ
+[h2] Before you ask
+[h3] Do you ever see my tasks?
+[p] No. The tool runs on your machine or your own GitHub Actions job, using a token only you hold. There is no server we operate that your data passes through.
+[h3] Is this affiliated with Todoist or Asana?
+[p] No. UnDeleted is an independent third-party tool built on their public APIs, not created by, affiliated with, or supported by Doist or Asana, Inc.
+[h3] What if I lose tasks it can't restore?
+[p] Restore only recreates tasks that exist in a past snapshot. If something was deleted before your first snapshot ran, there's nothing to restore from: set it up before you need it, not after.
+[h3] Does it modify or delete anything?
+[p] No. Restore is strictly additive, it only recreates what's missing. It never overwrites or deletes existing tasks.
+[p] UnDeleted is an independent tool and is not created by, affiliated with, or supported by Doist (Todoist) or Asana, Inc.
+[p] © 2026 UnDeleted.

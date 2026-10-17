@@ -1,0 +1,12 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+I wrote the pulse report to `automation-reports/pulse-2026-10-14.md` (under 300 words). No other files were changed.
+
+- **Shipped:** nothing. There were no commits in the last 8 days; the last one was on 2026-09-03, 41 days ago. The only working-tree change is an uncommitted `.gitignore` edit that ignores `/graft/`.
+- **Risks:**
+  - The alternativeto.net listing has been ready to submit for about 6 weeks (the account is 47 days old) and still hasn't been submitted.
+  - The HN account is unchanged at 1 karma and 0 submissions.
+  - The Reddit DM sent around 2026-08-28 has no logged reply check, about 7 weeks on.
+  - This is the third pulse in a row raising the same items.
+- **Next 3:** submit the alternativeto.net listing; check the Reddit DM and the backup CI runs; decide whether to commit to the launch or shelve it (and pause this pulse if you shelve it).
+
+I couldn't check whether the daily backup job is still running, because the `gh` CLI isn't installed here. The last run I could confirm was on 2026-08-28. There were no real TODO/FIXME items: every match was the word `TODOIST`.

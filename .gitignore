@@ -8,3 +8,6 @@ __pycache__/
 build/
 dist/
 *.spec
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

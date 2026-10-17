@@ -264,3 +264,25 @@ distribution task, not a technical one.
 5. Backup automation itself is now genuinely done for all 3 sources — no further action needed
    there barring a token expiring (ntfy/healthchecks alert would fire; see below).
 6. Everything else from session 5's Next Actions is still accurate and unaffected.
+
+## 2026-10-17 launch-prep
+- **SEO post shipped (uncommitted, central commit pending)**: `docs/todoist-lost-tasks.html` +
+  mirror `landing/todoist-lost-tasks.html`. Targets "todoist lost my tasks". Recovery-first:
+  check archived/filters/search → Reporting (view-only, 7 days on Beginner) → Settings → Backups
+  (Pro/Business, up to 21 daily ZIP/CSV backups, restore via new project → Manage data → Import
+  from CSV; no completed tasks/archived projects) → support → keep your own copy. UnDeleted pitch
+  last, with limits (active tasks only, no comments/attachments, no pre-first-snapshot recovery,
+  zero paying customers). Facts sourced from todoist.com help articles 115001799989 and
+  view-the-activity-log-oOra6D, fetched 2026-10-17. Canonical/OG/Article JSON-LD added.
+  ai-tells-validator: clean (ok:true, 923 words) after 3 rule-of-three rewrites.
+- Landing footer now links the post; `docs/index.html` re-synced from `landing/index.html`
+  (docs had been missing the DIY-moat compare-note from fc9ab81 — Pages was serving stale copy).
+- No sitemap.xml exists — none added. Consider adding sitemap.xml + robots.txt to `docs/`.
+- **awesome-cli-apps PR NOT opened — disqualified.** contributing.md requires >20 GitHub stars
+  (repo has 0) and >3 months old (created 2026-08-20 → eligible 2026-11-20 at earliest); it
+  also says "AI-generated PRs are not welcome" and wants a human's reason; repo AGENTS.md tells
+  agents never to create PRs. Revisit only when stars >20 and Leon writes/submits it himself.
+  Format when eligible: bottom of relevant category, `[UnDeleted](LINK) - Description.`, PR
+  title `Add UnDeleted`, use their PR template.
+- GitHub repo description still says "Todoist and Asana" — omits ClickUp; fix in repo settings.
+- Tests: 25/25 passing.
